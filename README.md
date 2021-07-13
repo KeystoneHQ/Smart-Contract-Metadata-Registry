@@ -4,7 +4,7 @@ This is a collection of contract data such as names, [contract metadata](https:/
 This repo hopes to collect as much data as possible so offline signers like hardware wallets can use it to decode transactions for a better user-friendly experience.
 
 ## Structure
-all of the contract metadata is grouped by chain. For each contract, it has a json file with  the contract address as its name.
+All of the contract metadata is grouped by chain. For each contract, it has a json file with  the contract address as its name.
 
 For each json file, there are these fields:
 
