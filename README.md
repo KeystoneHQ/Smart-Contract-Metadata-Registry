@@ -1,12 +1,12 @@
 # Contracts Meta Repo
-A collection of contract data like names, [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) and other data fields.
+This is a collection of contract data such as names, [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) and other data fields.
 
-This repo is hoping to collect data as much as possible, so offline signer like hardware wallets can use this information to decode the transaction to provide user-friendly information as much as possible.
+This repo hopes to collect as much data as possible so offline signers like hardware wallets can use it to decode transactions for a better user-friendly experience.
 
 ## Structure
-all the contract meta data are grouped by chain. and for each contract, it has a json file which is named by contract address.
+all of the contract metadata is grouped by chain. For each contract, it has a json file with  the contract address as its name.
 
-for each json file there are these fields.
+For each json file, there are these fields:
 
 ```
 {
@@ -16,18 +16,17 @@ for each json file there are these fields.
     "checkPoints": [] // reserved field optional
 }
 ```
-The Address and metadata are two required field. the address follow [EIP 55 address checksum format](https://github.com/ethereum/EIPs/issues/55).
+The “Address” and “metadata” are two required fields. The address follows the[EIP 55 address checksum format](https://github.com/ethereum/EIPs/issues/55).
 
-the metadata field follow the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html)
+The “metadata” field follows the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html)
 
 
 
-## Help us improve and Submission Process
-We would like to maintain this repo with the whole community. The pull request will be really helpful either adding the new contract metadata or modify the existings like name or other field.
+## Help us improve and Submit Processes
+We would like to maintain this repo with the whole community. The pull request will be really helpful either by adding the new contract metadata or modify the existing names or other fields
 
 1. Fork this repository.
-2. do modification.
+2. Do modification.
 3. send the pull request.
 
-
-Many thanks the awesome tool https://sourcify.dev/ for providing current data
+Many thanks for the awesome tool https://sourcify.dev/ for providing the current data
