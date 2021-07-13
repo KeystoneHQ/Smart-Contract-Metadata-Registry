@@ -1,0 +1,1 @@
+{"name": "Opyn: Proxy", "address": "0x87887cf0e37d937f989ab76b99e4f4682da044c4", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "address", "name": "_masterCopy", "type": "address"}], "payable": false, "stateMutability": "nonpayable", "type": "constructor"}, {"payable": true, "stateMutability": "payable", "type": "fallback"}]}}, "version": 1, "checkPoints": []}
