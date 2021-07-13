@@ -1,0 +1,1 @@
+{"name": "Kyber: ENS Resolver", "address": "0x1982131c7d6959ff7768ee39c023ad002d8c9759", "metadata": {"output": {"abi": [{"constant": true, "inputs": [], "name": "getKyberNetworkAddress", "outputs": [{"name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"}]}}, "version": 1, "checkPoints": []}
