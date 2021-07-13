@@ -27,6 +27,6 @@ We would like to maintain this repo with the whole community. The pull request w
 
 1. Fork this repository.
 2. Do modification.
-3. send the pull request.
+3. Send the pull request.
 
 Many thanks for the awesome tool https://sourcify.dev/ for providing the current data
