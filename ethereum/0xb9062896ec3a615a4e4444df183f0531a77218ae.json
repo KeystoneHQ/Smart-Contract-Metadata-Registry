@@ -1,0 +1,1 @@
+{"name": "Pool Admin", "address": "0xB9062896ec3A615a4e4444DF183F0531a77218AE", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "address", "name": "_masterCopy", "type": "address"}], "payable": false, "stateMutability": "nonpayable", "type": "constructor"}, {"payable": true, "stateMutability": "payable", "type": "fallback"}]}}, "version": 1, "checkPoints": []}
