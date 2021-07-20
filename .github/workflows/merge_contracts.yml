@@ -23,6 +23,6 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: contracts
-          path: contracts
+          path: outputs/
           
 
