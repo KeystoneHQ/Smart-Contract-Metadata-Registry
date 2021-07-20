@@ -1,0 +1,27 @@
+name: Merge contracts to sqlite
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ test ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout actions
+    - uses: actions/checkout@v1
+
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+		
+    - name: merge contracts to sqlite
+      run: |
+        python merge_abis_to_sqlite.py
+		
+
+
