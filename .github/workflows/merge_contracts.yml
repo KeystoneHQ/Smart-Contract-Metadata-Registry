@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - test
+      - merge_contracts
 
 jobs:
   merge_contracts_to_sqlite:
