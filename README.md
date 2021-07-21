@@ -20,7 +20,8 @@ The “Address” and “metadata” are two required fields. The address follow
 
 The “metadata” field follows the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html)
 
-
+#### notice：
+ A large number of single json file copies will raise performance issues. So we offer the solution with a database through a python script, in which all contract information will be stored. The final decoded transaction comes from the database.
 
 ## Help us improve and Submit Processes
 We would like to maintain this repo with the whole community. The pull request will be really helpful either by adding the new contract metadata or modify the existing names or other fields
