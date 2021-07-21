@@ -1,0 +1,28 @@
+name: Merge contracts
+
+on: 
+  push:
+    branches:
+      - main
+      - merge_contracts
+
+jobs:
+  merge_contracts_to_sqlite:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@main
+      - name: Set up Python 3.7
+        uses: actions/setup-python@main
+        with:
+          python-version: '3.7'
+      - name: merge contracts
+        run: |
+          python merge_contracts_to_sqlite.py
+      - name: upload contracts.zip
+        uses: actions/upload-artifact@main
+        with:
+          name: contracts
+          path: outputs/
+          
+
