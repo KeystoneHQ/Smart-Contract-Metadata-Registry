@@ -77,4 +77,4 @@ if __name__ == "__main__":
     path = "./ethereum/"
     if not os.path.exists("./outputs/contracts/ethereum/"):
         os.makedirs("./outputs/contracts/ethereum/")
-    merge_abis_to_sqlite(DB="./outputs/contracts/ethereum/contracts", contracts_path=path)
+    merge_abis_to_sqlite(DB="./outputs/contracts/ethereum/contracts.db", contracts_path=path)
