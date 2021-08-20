@@ -34,7 +34,7 @@ def get_contract_info(contract_path):
     with open(contract_path, 'r') as f:
         try:
             content = json.loads(f.read())
-            content_address = content["address"]
+            content_address = content["address"].lower()
             contract_name = content["name"]
             contract_metadate = json.dumps(content["metadata"])
             contract_version = int(content["version"])
