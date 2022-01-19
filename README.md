@@ -17,9 +17,9 @@ For each json file, there are these fields:
     "checkPoints": [] // reserved field optional
 }
 ```
-The “Address” and “metadata” are two required fields. The address follows the[EIP 55 address checksum format](https://github.com/ethereum/EIPs/issues/55).
+The “Address” and “metadata” are two required fields. The address follows the [EIP 55 address checksum format](https://github.com/ethereum/EIPs/issues/55).
 
-The “metadata” field follows the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) the output field in the metadata are required which should including the abi, userdoc and devdoc three fields. 
+The “metadata” field follows the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html).The output field in the metadata are required which should including the abi, userdoc and devdoc three fields. 
 
 ```
 {
