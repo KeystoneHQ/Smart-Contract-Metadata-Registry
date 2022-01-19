@@ -11,6 +11,7 @@ For each json file, there are these fields:
 ```
 {
     "name": string, // contract name optional
+    "chainId": number, // for evm chain, this is the chainId of the deployed chain.
     "address": string, // contract address required
     "metadata":  json, // contract metadata required
     "checkPoints": [] // reserved field optional
@@ -18,8 +19,24 @@ For each json file, there are these fields:
 ```
 The “Address” and “metadata” are two required fields. The address follows the[EIP 55 address checksum format](https://github.com/ethereum/EIPs/issues/55).
 
-The “metadata” field follows the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html)
+The “metadata” field follows the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) the output field in the metadata are required which should including the abi, userdoc and devdoc three fields. 
 
+```
+{
+  ....
+  // Required: Generated information about the contract.
+  output:
+  {
+    // Required: ABI definition of the contract
+    abi: [ ... ],
+    // Required: NatSpec user documentation of the contract
+    userdoc: [ ... ],
+    // Required: NatSpec developer documentation of the contract
+    devdoc: [ ... ],
+  }
+}
+
+```
 
 
 ## Help us improve and Submit Processes
