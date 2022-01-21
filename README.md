@@ -55,8 +55,9 @@ The “metadata” field follows the [contract metadata](https://docs.solidityla
 ## Support Wallet
 
 ## Related Solutions & Resources
-[MetaMask Transaction Insight](https://metamask.zendesk.com/hc/en-us/articles/4412543412123) 
-[Sourcify](https://sourcify.dev/) (Ethereum Only)
+- [MetaMask Transaction Insight](https://metamask.zendesk.com/hc/en-us/articles/4412543412123) 
+
+- [Sourcify](https://sourcify.dev/) (Ethereum Only)
 
 ## License
 MIT
