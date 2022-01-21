@@ -52,7 +52,12 @@ The “metadata” field follows the [contract metadata](https://docs.solidityla
 
 ## Contributors
 
-## Support Wallet
+## Wallet Supports Transaction ABI Decoding
+- [Keystone Hardware Wallet](https://support.keyst.one/advanced-features/decode-defi-transactions)
+
+- [MetaMask](https://metamask.zendesk.com/hc/en-us/articles/4412543412123)
+
+- [Rabby Wallet](https://medium.com/@rabby_io/rabby-release-announcement-564406988e2b)  
 
 ## Related Solutions & Resources
 - [MetaMask Transaction Insight](https://metamask.zendesk.com/hc/en-us/articles/4412543412123) 
