@@ -1,10 +1,22 @@
-# Contracts Meta Repo
-This is a collection of contract data such as names, [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) and other data fields.
+#  Smart Contract Metadata Registry
 
-This repo hopes to collect as much data as possible so offline signers like hardware wallets can use it to decode transactions for a better user-friendly experience.
+## Introduction
+
+### Mission
+This repo collects **cross-chain** smart contract ABIs to protect the Web3 community against [phishing attacks](https://coinmarketcap.com/alexandria/article/phishing-attack-hits-two-major-defi-protocols-users-told-to-stay-away) targeting average Web3 users and sophisticated [remote attacks](https://medium.com/@hugh_karp/nxm-hack-update-72c5c017b48) on whales.
+
+### Motivation
+Ethereum and other blockchain decentralized networks are trying to rebuild trust through trustless computational systems. One of the most important mantras in the blockchain community is “Don’t trust. Verify!”.
+
+To apply this mantra to signing a normal transaction on a software or hardware wallet, the user needs to fully verify at least the amount of crypto, destination address (sometimes change address with UTXO model blockchains) and transaction fees. Otherwise an attacker can perform a [ransom attack](https://thecharlatan.ch/Ransom-Coldcard/) to steal crypto assets without gaining access to the user’s recovery phrase (seed) or private keys.
+With the booming of Tokenization in 2017 and DeFi projects in 2020, blockchain transactions have become much more complex than just sending coins on mainnet. Transactions that are interacting with smart contracts require software and hardware wallets to be able to do ABI decoding to avoid [blind signing](https://blog.keyst.one/blind-signing-a-security-black-hole-for-the-ethereum-community-13f909b848b6).
+
+This repo is a community effort to collect ABIs to protect users against [phishing attacks](https://coinmarketcap.com/alexandria/article/phishing-attack-hits-two-major-defi-protocols-users-told-to-stay-away) and sophisticated [remote attacks](https://medium.com/@hugh_karp/nxm-hack-update-72c5c017b48). Any software and hardware wallets can use the data in this repo to decode corresponding smart contracts to enhance signing security for the Web3 community.
 
 ## Structure
-All of the contract metadata is grouped by chain. For each contract, it has a json file with  the contract address as its name.
+The repo is a collection of contract data such as names, [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) and other data fields.
+
+All of the [contract metadata](https://docs.soliditylang.org/en/v0.8.6/metadata.html) is grouped by chain. For each contract, it has a json file with  the contract address as its name.
 
 For each json file, there are these fields:
 
@@ -38,12 +50,13 @@ The “metadata” field follows the [contract metadata](https://docs.solidityla
 
 ```
 
+## Contributors
 
-## Help us improve and Submit Processes
-We would like to maintain this repo with the whole community. The pull request will be really helpful either by adding the new contract metadata or modify the existing names or other fields
+## Support Wallet
 
-1. Fork this repository.
-2. Do modification.
-3. Send the pull request.
+## Related Solutions & Resources
+[MetaMask Transaction Insight](https://metamask.zendesk.com/hc/en-us/articles/4412543412123) 
+[Sourcify](https://sourcify.dev/) (Ethereum Only)
 
-Many thanks for the awesome tool https://sourcify.dev/ for providing the current data
+## License
+MIT
