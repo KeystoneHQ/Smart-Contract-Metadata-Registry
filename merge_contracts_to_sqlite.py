@@ -5,6 +5,36 @@ import json
 import sqlite3
 import zipfile
 
+def printProgressBar(
+    iteration,
+    total,
+    prefix="Progress:",
+    suffix="Complete",
+    decimals=1,
+    length=100,
+    fill="█",
+    printEnd="\r",
+):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iteration   - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+    """
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + "-" * (length - filledLength)
+    print("\r%s |%s| %s%% %s" % (prefix, bar, percent, suffix), end=printEnd)
+    # Print New Line on Complete
+    if iteration == total:
+        print()
+
 
 def create_contracts_table(DB):
     conn = sqlite3.connect(DB)
@@ -46,16 +76,18 @@ def get_contract_info(contract_path):
 
 
 def merge_abis_to_sqlite(DB, contracts_path):
+    
 
     if not os.path.exists(contracts_path):
         return None
 
-    create_contracts_table(DB)
     conn = sqlite3.connect(DB)
     cursor = conn.cursor()
     fileslist = os.listdir(contracts_path)
 
     if len(fileslist):
+        sum_of_file = len(fileslist) - 1
+        location = 0
         for file in fileslist:
             if file.endswith(".json"):
                 try:
@@ -66,7 +98,8 @@ def merge_abis_to_sqlite(DB, contracts_path):
 
                 sql_insert_info = "insert into contracts (address,name, metadata, version, checkPoints) values (?,?,?,?,?)"
                 cursor.execute(sql_insert_info, (address, name, metabase, version, check_points))
-                print("{address} is done......".format(address=address))
+                location += 1
+                printProgressBar(location, sum_of_file, prefix=f"processing: {contracts_path}")
 
     cursor.close()
     conn.commit()
@@ -74,7 +107,12 @@ def merge_abis_to_sqlite(DB, contracts_path):
 
 
 if __name__ == "__main__":
-    path = "./ethereum/"
-    if not os.path.exists("./outputs/contracts/ethereum/"):
-        os.makedirs("./outputs/contracts/ethereum/")
-    merge_abis_to_sqlite(DB="./outputs/contracts/ethereum/contracts.db", contracts_path=path)
+    ignored = [".github", ".git", "outputs"]
+    targets = [ name for name in os.listdir('.') if os.path.isdir(os.path.join('.', name)) and name not in ignored]
+    if not os.path.exists("./outputs/contracts/"):
+        os.makedirs("./outputs/contracts/")
+    DB="./outputs/contracts/contracts.db"
+    create_contracts_table(DB)
+    for each_target in targets:
+        path = f"./{each_target}/"
+        merge_abis_to_sqlite(DB, contracts_path=path)
