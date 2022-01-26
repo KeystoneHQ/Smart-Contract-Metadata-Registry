@@ -92,7 +92,8 @@ def merge_abis_to_sqlite(DB, contracts_path):
             if file.endswith(".json"):
                 try:
                     address, name, metabase, version, check_points = get_contract_info(contract_path=contracts_path+file)
-                except:
+                except Exception as e:
+                    print(e)
                     print("{file} is error......".format(file=file))
                     continue
 
