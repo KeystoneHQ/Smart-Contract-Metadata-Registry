@@ -3,7 +3,7 @@
 import os
 import json
 import sqlite3
-import zipfile
+import shutil
 
 def printProgressBar(
     iteration,
@@ -116,3 +116,4 @@ if __name__ == "__main__":
     for each_target in targets:
         path = f"./{each_target}/"
         merge_abis_to_sqlite(DB, contracts_path=path)
+    shutil.make_archive('contracts', 'zip', './outputs/contracts')
