@@ -1,0 +1,464 @@
+{
+  "name": "PglStakingContract",
+  "chainId": 43314,
+  "address": "0x784DA19e61cf348a8c54547531795ECfee2AfFd1",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "payable": true,
+          "stateMutability": "payable",
+          "type": "fallback"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "accrualBlockTimestamp",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "accruedReward",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "admin",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "contract PglStakingContractProxy",
+              "name": "proxy",
+              "type": "address"
+            }
+          ],
+          "name": "becomeImplementation",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [],
+          "name": "claimRewards",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "pglAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "deposit",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "rewardToken",
+              "type": "uint256"
+            }
+          ],
+          "name": "getClaimableRewards",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "implementation",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "pendingAdmin",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "pendingImplementation",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "pglTokenAddress",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "pglAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "redeem",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "rewardIndex",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "rewardSpeeds",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "rewardTokenAddresses",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "newPglTokenAddress",
+              "type": "address"
+            }
+          ],
+          "name": "setPglTokenAddress",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "rewardToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "speed",
+              "type": "uint256"
+            }
+          ],
+          "name": "setRewardSpeed",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "rewardToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "rewardTokenAddress",
+              "type": "address"
+            }
+          ],
+          "name": "setRewardTokenAddress",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "supplierRewardIndex",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "supplyAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "totalSupplies",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ],
+      "userdoc": {
+        "methods": {
+          "becomeImplementation(address)": {
+            "notice": "Accept this contract as the implementation for a proxy."
+          },
+          "claimRewards()": {
+            "notice": "Claim pending rewards from the staking contract by transferring them to the requester."
+          },
+          "deposit(uint256)": {
+            "notice": "Deposit Pangolin QI-AVAX liquidity provider tokens into the staking contract."
+          },
+          "getClaimableRewards(uint256)": {
+            "notice": "Get the current amount of available rewards for claiming."
+          },
+          "redeem(uint256)": {
+            "notice": "Redeem deposited PGL tokens from the contract."
+          },
+          "setPglTokenAddress(address)": {
+            "notice": "Set QI-AVAX PGL token contract address."
+          },
+          "setRewardSpeed(uint256,uint256)": {
+            "notice": "Set reward distribution speed."
+          },
+          "setRewardTokenAddress(uint256,address)": {
+            "notice": "Set ERC20 reward token contract address."
+          }
+        }
+      },
+      "devdoc": {
+        "methods": {
+          "becomeImplementation(address)": {
+            "params": {
+              "proxy": "PglStakingContractProxy"
+            }
+          },
+          "deposit(uint256)": {
+            "params": {
+              "pglAmount": "The amount of PGL tokens to deposit"
+            }
+          },
+          "getClaimableRewards(uint256)": {
+            "params": {
+              "rewardToken": "Reward token whose claimable balance to query"
+            },
+            "return": "Balance of claimable reward tokens"
+          },
+          "redeem(uint256)": {
+            "params": {
+              "pglAmount": "Redeem amount"
+            }
+          },
+          "setPglTokenAddress(address)": {
+            "params": {
+              "newPglTokenAddress": "New QI-AVAX PGL token contract address"
+            }
+          },
+          "setRewardSpeed(uint256,uint256)": {
+            "params": {
+              "rewardToken": "Reward token speed to change",
+              "speed": "New reward speed"
+            }
+          },
+          "setRewardTokenAddress(uint256,address)": {
+            "params": {
+              "rewardToken": "Reward token address to set",
+              "rewardTokenAddress": "New contract address"
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": 1
+}

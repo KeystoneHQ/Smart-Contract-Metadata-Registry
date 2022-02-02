@@ -1,0 +1,104 @@
+{
+  "name": "Maximillion",
+  "chainId": 43314,
+  "address": "0xd78DEd803b28A5A9C860c2cc7A4d84F611aA4Ef8",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "contract QiAvax",
+              "name": "qiAvax_",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "constant": true,
+          "inputs": [],
+          "name": "qiAvax",
+          "outputs": [
+            {
+              "internalType": "contract QiAvax",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "borrower",
+              "type": "address"
+            }
+          ],
+          "name": "repayBehalf",
+          "outputs": [],
+          "payable": true,
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "borrower",
+              "type": "address"
+            },
+            {
+              "internalType": "contract QiAvax",
+              "name": "qiAvax_",
+              "type": "address"
+            }
+          ],
+          "name": "repayBehalfExplicit",
+          "outputs": [],
+          "payable": true,
+          "stateMutability": "payable",
+          "type": "function"
+        }
+      ],
+      "userdoc": {
+        "methods": {
+          "constructor": "Construct a Maximillion to repay max in a QiAvax market",
+          "repayBehalf(address)": {
+            "notice": "msg.sender sends Avax to repay an account's borrow in the qiAvax market"
+          },
+          "repayBehalfExplicit(address,address)": {
+            "notice": "msg.sender sends Avax to repay an account's borrow in a qiAvax market"
+          }
+        }
+      },
+      "devdoc": {
+        "author": "Benqi",
+        "methods": {
+          "repayBehalf(address)": {
+            "details": "The provided Avax is applied towards the borrow balance, any excess is refunded",
+            "params": {
+              "borrower": "The address of the borrower account to repay on behalf of"
+            }
+          },
+          "repayBehalfExplicit(address,address)": {
+            "details": "The provided Avax is applied towards the borrow balance, any excess is refunded",
+            "params": {
+              "borrower": "The address of the borrower account to repay on behalf of",
+              "qiAvax_": "The address of the qiAvax contract to repay in"
+            }
+          }
+        },
+        "title": "Benqi's Maximillion Contract"
+      }
+    }
+  },
+  "version": 1
+}
