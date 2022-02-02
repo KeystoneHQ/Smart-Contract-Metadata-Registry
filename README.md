@@ -26,6 +26,7 @@ For each json file, there are these fields:
     "chainId": number, // for evm chain, this is the chainId of the deployed chain.
     "address": string, // contract address required
     "metadata":  json, // contract metadata required
+    "version": number // contract version number required
     "checkPoints": [] // reserved field optional
 }
 ```
