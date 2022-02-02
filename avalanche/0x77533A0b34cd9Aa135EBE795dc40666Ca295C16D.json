@@ -1,0 +1,526 @@
+{
+  "name": "QiTokenSaleDistributor",
+  "chainId": 43314,
+  "address": "0x77533A0b34cd9Aa135EBE795dc40666Ca295C16D",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Claim",
+          "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "admin",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "contract QiTokenSaleDistributorProxy",
+              "name": "proxy",
+              "type": "address"
+            }
+          ],
+          "name": "becomeImplementation",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "claim",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "claimedTokens",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "completedPurchaseRounds",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "dataAdmin",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getClaimableTokenAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getClaimedTokenAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "round",
+              "type": "uint256"
+            }
+          ],
+          "name": "getRoundClaimableTokenAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "round",
+              "type": "uint256"
+            }
+          ],
+          "name": "getRoundClaimedTokenAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "implementation",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "initialReleasePercentages",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "pendingAdmin",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "pendingImplementation",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "purchasedTokens",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "qiContractAddress",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "releasePeriodLength",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "releasePeriods",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address[]",
+              "name": "recipients",
+              "type": "address[]"
+            }
+          ],
+          "name": "resetPurchasedTokensByUser",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "newDataAdmin",
+              "type": "address"
+            }
+          ],
+          "name": "setDataAdmin",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address[]",
+              "name": "recipients",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "rounds",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "tokenInitialReleasePercentages",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "tokenReleasePeriods",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amounts",
+              "type": "uint256[]"
+            }
+          ],
+          "name": "setPurchasedTokensByUser",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "newQiContractAddress",
+              "type": "address"
+            }
+          ],
+          "name": "setQiContractAddress",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "vestingScheduleEpoch",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "withdrawQi",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ],
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "becomeImplementation(address)": {
+            "notice": "Accept this contract as the implementation for a proxy."
+          },
+          "getClaimableTokenAmount()": {
+            "notice": "Get the amount of QI tokens available for the caller to claim."
+          },
+          "getClaimedTokenAmount()": {
+            "notice": "Get the total number of claimed tokens by the user."
+          },
+          "getRoundClaimableTokenAmount(uint256)": {
+            "notice": "Get the amount of QI tokens available for the caller to claim from the given purchase round."
+          },
+          "getRoundClaimedTokenAmount(uint256)": {
+            "notice": "Get the number of claimed tokens in a specific round by the user."
+          },
+          "resetPurchasedTokensByUser(address[])": {
+            "notice": "Reset all data for the given addresses."
+          },
+          "setDataAdmin(address)": {
+            "notice": "Set the data admin."
+          },
+          "setPurchasedTokensByUser(address[],uint256[],uint256[],uint256[],uint256[])": {
+            "notice": "Set the amount of purchased QI tokens per user."
+          },
+          "setQiContractAddress(address)": {
+            "notice": "Set the QI token contract address."
+          },
+          "withdrawQi(uint256)": {
+            "notice": "Withdraw deposited QI tokens from the contract."
+          }
+        },
+        "version": 1
+      },
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "becomeImplementation(address)": {
+            "params": {
+              "proxy": "QiTokenSaleDistributorProxy"
+            }
+          },
+          "getClaimableTokenAmount()": {
+            "returns": {
+              "_0": "Number of QI tokens available for claiming"
+            }
+          },
+          "getClaimedTokenAmount()": {
+            "returns": {
+              "_0": "Number of claimed QI tokens"
+            }
+          },
+          "getRoundClaimableTokenAmount(uint256)": {
+            "params": {
+              "round": "Purchase round number"
+            },
+            "returns": {
+              "_0": "Number of QI tokens available for claiming from the given round"
+            }
+          },
+          "getRoundClaimedTokenAmount(uint256)": {
+            "params": {
+              "round": "Purchase round number"
+            },
+            "returns": {
+              "_0": "Number of claimed QI tokens"
+            }
+          },
+          "resetPurchasedTokensByUser(address[])": {
+            "params": {
+              "recipients": "Addresses whose data to reset"
+            }
+          },
+          "setDataAdmin(address)": {
+            "params": {
+              "newDataAdmin": "New data admin address"
+            }
+          },
+          "setPurchasedTokensByUser(address[],uint256[],uint256[],uint256[],uint256[])": {
+            "params": {
+              "amounts": "Purchased token amounts",
+              "recipients": "QI token recipients",
+              "rounds": "Purchase round number",
+              "tokenInitialReleasePercentages": "Initial token release percentages",
+              "tokenReleasePeriods": "Number of token release periods"
+            }
+          },
+          "setQiContractAddress(address)": {
+            "params": {
+              "newQiContractAddress": "New address of the QI token contract"
+            }
+          },
+          "withdrawQi(uint256)": {
+            "params": {
+              "amount": "QI amount to withdraw from the contract balance"
+            }
+          }
+        },
+        "version": 1
+      }
+    }
+  },
+  "version": 1
+}
