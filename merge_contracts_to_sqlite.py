@@ -110,11 +110,11 @@ def merge_abis_to_sqlite(DB, contracts_path):
 if __name__ == "__main__":
     ignored = [".github", ".git", "outputs"]
     targets = [ name for name in os.listdir('.') if os.path.isdir(os.path.join('.', name)) and name not in ignored]
-    if not os.path.exists("./outputs/contracts/"):
-        os.makedirs("./outputs/contracts/")
-    DB="./outputs/contracts/contracts.db"
+    if not os.path.exists("./outputs/contracts/ethereum"):
+        os.makedirs("./outputs/contracts/ethereum")
+    DB="./outputs/contracts/ethereum/contracts.db"
     create_contracts_table(DB)
     for each_target in targets:
         path = f"./{each_target}/"
         merge_abis_to_sqlite(DB, contracts_path=path)
-    shutil.make_archive('contracts', 'zip', './outputs/contracts')
+    shutil.make_archive('contracts', 'zip', root_dir='./outputs', base_dir='contracts/ethereum')
