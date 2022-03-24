@@ -1,0 +1,729 @@
+{
+  "name": "xTRANQ staking",
+  "chainId": 1666600000,
+  "address": "0x59a4d6b2a944e8acabbd5d2571e731388918669f",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "anonymous": false,
+          "name": "AddCampaignInfo",
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "indexed": true,
+              "name": "campaignID"
+            },
+            {
+              "internalType": "contract IERC20",
+              "indexed": false,
+              "type": "address",
+              "name": "stakingToken"
+            },
+            {
+              "type": "address",
+              "indexed": false,
+              "name": "rewardToken",
+              "internalType": "contract IERC20"
+            },
+            {
+              "type": "uint256",
+              "indexed": false,
+              "name": "startBlock",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "name": "AddRewardInfo",
+          "type": "event",
+          "anonymous": false,
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "campaignID",
+              "indexed": true,
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "phase",
+              "indexed": true,
+              "internalType": "uint256"
+            },
+            {
+              "name": "endBlock",
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "rewardPerBlock"
+            }
+          ]
+        },
+        {
+          "name": "Deposit",
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "indexed": true,
+              "name": "user",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "campaign"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "indexed": true,
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "amount"
+            },
+            {
+              "name": "campaign",
+              "internalType": "uint256",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "anonymous": false,
+          "name": "EmergencyWithdraw",
+          "type": "event"
+        },
+        {
+          "name": "OwnershipTransferred",
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "previousOwner",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "indexed": true,
+              "type": "address",
+              "name": "newOwner"
+            }
+          ],
+          "anonymous": false,
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "type": "event",
+          "name": "SetRewardHolder",
+          "inputs": [
+            {
+              "name": "rewardHolder",
+              "indexed": false,
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "rewardInfoLimit"
+            }
+          ],
+          "name": "SetRewardInfoLimit",
+          "anonymous": false,
+          "type": "event"
+        },
+        {
+          "name": "Withdraw",
+          "anonymous": false,
+          "type": "event",
+          "inputs": [
+            {
+              "internalType": "address",
+              "indexed": true,
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "campaign",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "name": "campaignInfo",
+          "stateMutability": "view",
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "contract IERC20",
+              "name": "stakingToken",
+              "type": "address"
+            },
+            {
+              "name": "rewardToken",
+              "internalType": "contract IERC20",
+              "type": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "startBlock",
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lastRewardBlock",
+              "type": "uint256"
+            },
+            {
+              "name": "accRewardPerShare",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "name": "totalStaked",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "totalRewards",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "claimPaused",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            },
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "name": "campaignRewardInfo",
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "endBlock",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "rewardPerBlock",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "stateMutability": "view",
+          "name": "owner",
+          "type": "function",
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "inputs": [],
+          "constant": true,
+          "signature": "0x8da5cb5b"
+        },
+        {
+          "stateMutability": "nonpayable",
+          "outputs": [],
+          "type": "function",
+          "inputs": [],
+          "name": "renounceOwnership"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "inputs": [],
+          "name": "rewardHolder",
+          "constant": true,
+          "signature": "0x569c93d2"
+        },
+        {
+          "type": "function",
+          "inputs": [],
+          "name": "rewardInfoLimit",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "constant": true,
+          "signature": "0x00d74850"
+        },
+        {
+          "name": "transferOwnership",
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "newOwner"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "amount",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "rewardDebt"
+            }
+          ],
+          "type": "function",
+          "name": "userInfo",
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "initialize",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "name": "_rewardHolder",
+              "internalType": "address",
+              "type": "address"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "outputs": [],
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_rewardHolder",
+              "type": "address"
+            }
+          ],
+          "name": "setRewardHolder",
+          "type": "function",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_updatedRewardInfoLimit",
+              "type": "uint256"
+            }
+          ],
+          "outputs": [],
+          "name": "setRewardInfoLimit"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "name": "addCampaignInfo",
+          "inputs": [
+            {
+              "name": "_stakingToken",
+              "internalType": "contract IERC20",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IERC20",
+              "type": "address",
+              "name": "_rewardToken"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_startBlock",
+              "type": "uint256"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "outputs": [],
+          "name": "setClaimPaused",
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "name": "_campaignID",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "type": "bool",
+              "name": "_claimPaused",
+              "internalType": "bool"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "name": "_campaignID",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ],
+          "name": "claimPaused"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_campaignID",
+              "type": "uint256"
+            },
+            {
+              "name": "_endBlock",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardPerBlock",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "type": "function",
+          "name": "addRewardInfo",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "name": "rewardInfoLen",
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "name": "_campaignID",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "name": "campaignInfoLen",
+          "constant": true,
+          "signature": "0x4ad7ce80"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "currentEndBlock",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_campaignID",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "name": "currentRewardPerBlock",
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "_campaignID"
+            }
+          ]
+        },
+        {
+          "stateMutability": "pure",
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "getMultiplier",
+          "inputs": [
+            {
+              "name": "_from",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "_to",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_endBlock",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "type": "function",
+          "name": "pendingReward",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_campaignID",
+              "type": "uint256"
+            },
+            {
+              "name": "_user",
+              "internalType": "address",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "updateCampaign",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_campaignID",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "type": "function",
+          "name": "massUpdateCampaigns"
+        },
+        {
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_campaignID",
+              "type": "uint256"
+            },
+            {
+              "name": "_amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "name": "deposit",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "outputs": [],
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "_campaignID"
+            },
+            {
+              "type": "uint256",
+              "name": "_amount",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "withdraw",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "name": "harvest",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "internalType": "uint256[]",
+              "name": "_campaignIDs"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_campaignID",
+              "type": "uint256"
+            }
+          ],
+          "name": "emergencyWithdraw",
+          "outputs": [],
+          "type": "function"
+        },
+        {
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "emergencyRewardWithdraw",
+          "inputs": [
+            {
+              "name": "_campaignID",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "name": "_amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "_beneficiary",
+              "type": "address"
+            }
+          ],
+          "outputs": []
+        }
+      ],
+      "userdoc": {
+        "methods": {}
+      },
+      "devdoc": {
+        "methods": {}
+      }
+    }
+  },
+  "version": 1
+}
