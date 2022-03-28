@@ -1,0 +1,287 @@
+{
+  "name": "Hoppers $veFLY",
+  "chainId": 43114,
+  "address": "0xbaf9a6f8a8afd4be0d85ca40f025bf364fa27324",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_flyAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_generationRateNumerator",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_generationRateDenominator",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_maxRatio",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        { "inputs": [], "name": "InvalidAmount", "type": "error" },
+        { "inputs": [], "name": "InvalidProposal", "type": "error" },
+        { "inputs": [], "name": "Unauthorized", "type": "error" },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "ballot",
+              "type": "address"
+            }
+          ],
+          "name": "AddedBallot",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "ballot",
+              "type": "address"
+            }
+          ],
+          "name": "RemovedBallot",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            }
+          ],
+          "name": "UpdatedOwner",
+          "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "FLY",
+          "outputs": [
+            { "internalType": "address", "name": "", "type": "address" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "ballot", "type": "address" }
+          ],
+          "name": "addBallot",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+          ],
+          "name": "arrValidBallots",
+          "outputs": [
+            { "internalType": "address", "name": "", "type": "address" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "account", "type": "address" }
+          ],
+          "name": "balanceOf",
+          "outputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "name": "deposit",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "", "type": "address" }
+          ],
+          "name": "flyBalanceOf",
+          "outputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "genDetails",
+          "outputs": [
+            {
+              "internalType": "uint128",
+              "name": "maxRatio",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint64",
+              "name": "generationRateNumerator",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "generationRateDenominator",
+              "type": "uint64"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "", "type": "address" },
+            { "internalType": "address", "name": "", "type": "address" }
+          ],
+          "name": "hasUserVoted",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "account", "type": "address" }
+          ],
+          "name": "hasUserVotedAny",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "name",
+          "outputs": [
+            { "internalType": "string", "name": "", "type": "string" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "owner",
+          "outputs": [
+            { "internalType": "address", "name": "", "type": "address" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "uint256", "name": "index", "type": "uint256" }
+          ],
+          "name": "removeBallot",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_maxRatio",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_generationRateNumerator",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_generationRateDenominator",
+              "type": "uint256"
+            }
+          ],
+          "name": "setGenerationDetails",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "user", "type": "address" }
+          ],
+          "name": "setHasVoted",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "_owner", "type": "address" }
+          ],
+          "name": "setOwner",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "symbol",
+          "outputs": [
+            { "internalType": "string", "name": "", "type": "string" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "user", "type": "address" }
+          ],
+          "name": "unsetHasVoted",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "", "type": "address" }
+          ],
+          "name": "validBallots",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "name": "withdraw",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "checkPoints": []
+}
