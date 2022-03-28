@@ -26,5 +26,8 @@ def check_file(path):
 
 if __name__ == "__main__":
     file_path = sys.argv[1]
-    print(file_path)
-    check_file(file_path)
+    print('----------', file_path)
+    filetype = file_path.split('.')[-1]
+    if filetype == 'json':
+        print(file_path)
+        check_file(file_path)
