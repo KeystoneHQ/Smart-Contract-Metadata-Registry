@@ -26,4 +26,5 @@ def check_file(path):
 
 if __name__ == "__main__":
     file_path = sys.argv[1]
+    print(file_path)
     check_file(file_path)

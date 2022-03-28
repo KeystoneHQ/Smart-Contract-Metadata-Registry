@@ -20,5 +20,5 @@ jobs:
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            python check_file.py file
+            python check_file.py ${file}
           done
