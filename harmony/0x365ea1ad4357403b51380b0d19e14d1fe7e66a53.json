@@ -6,25 +6,31 @@
     "output": {
       "abi": [
         {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
           "inputs": [
             {
+              "indexed": true,
               "internalType": "address",
-              "name": "user",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
               "type": "address"
             }
           ],
-          "name": "claimRewards",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
+          "name": "OwnershipTransferred",
+          "type": "event"
         },
         {
           "inputs": [
-            {
-              "internalType": "address",
-              "name": "user",
-              "type": "address"
-            },
             {
               "internalType": "uint256",
               "name": "amount",
@@ -37,53 +43,17 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "user",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "rewardToken",
-              "type": "uint256"
-            }
-          ],
-          "name": "getClaimableRewards",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
+          "inputs": [],
+          "name": "earlyWithdraw",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
           "inputs": [
             {
               "internalType": "address",
-              "name": "user",
-              "type": "address"
-            }
-          ],
-          "name": "getWithdrawFee",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "user",
+              "name": "tokenAddress",
               "type": "address"
             },
             {
@@ -92,7 +62,7 @@
               "type": "uint256"
             }
           ],
-          "name": "redeem",
+          "name": "emergencyWithdraw",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -100,12 +70,12 @@
         {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "index",
-              "type": "uint256"
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
             }
           ],
-          "name": "rewardSpeeds",
+          "name": "getLockedBalance",
           "outputs": [
             {
               "internalType": "uint256",
@@ -119,12 +89,105 @@
         {
           "inputs": [
             {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            }
+          ],
+          "name": "getLockedSupplies",
+          "outputs": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "stakedTokenAmount",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "unlockTime",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct SealedFiraUnlockerStorage.LockedSupply[]",
+              "name": "",
+              "type": "tuple[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            }
+          ],
+          "name": "getUnlockedBalance",
+          "outputs": [
+            {
               "internalType": "uint256",
-              "name": "index",
+              "name": "",
               "type": "uint256"
             }
           ],
-          "name": "rewardTokenAddresses",
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "initialize",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "lockDuration",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "lockedSupplies",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "stakedTokenAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unlockTime",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "owner",
           "outputs": [
             {
               "internalType": "address",
@@ -137,12 +200,12 @@
         },
         {
           "inputs": [],
-          "name": "rewardTokenCount",
+          "name": "payoutTokenAddress",
           "outputs": [
             {
-              "internalType": "uint256",
+              "internalType": "address",
               "name": "",
-              "type": "uint256"
+              "type": "address"
             }
           ],
           "stateMutability": "view",
@@ -152,16 +215,18 @@
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "rewardToken",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "speed",
+              "name": "amount",
               "type": "uint256"
             }
           ],
-          "name": "setRewardSpeed",
+          "name": "redeem",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "renounceOwnership",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -170,29 +235,24 @@
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "rewardToken",
+              "name": "newLockDuration",
               "type": "uint256"
-            },
+            }
+          ],
+          "name": "setLockDuration",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
             {
               "internalType": "address",
-              "name": "rewardTokenAddress",
+              "name": "newPayoutTokenAddress",
               "type": "address"
             }
           ],
-          "name": "setRewardTokenAddress",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "newRewardTokenCount",
-              "type": "uint256"
-            }
-          ],
-          "name": "setRewardTokenCount",
+          "name": "setPayoutTokenAddress",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -227,7 +287,7 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "user",
+              "name": "",
               "type": "address"
             }
           ],
@@ -256,8 +316,36 @@
           "type": "function"
         },
         {
-          "stateMutability": "payable",
-          "type": "receive"
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "transferOwnership",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "unlockedSupplyAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         }
       ],
       "userdoc": {
