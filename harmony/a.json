@@ -3,7 +3,7 @@
     "chainId": 1,
     "address": "123",
     "name": "12374",
-    "metadata":{},
+    "metadata":{"output":{"abi":[]}},
     "version": 2,
     "checkPoints": []
 }
