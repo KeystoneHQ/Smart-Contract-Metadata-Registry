@@ -2,7 +2,7 @@ name: check pr
 
 on:
   pull_request:
-    types: [opened, reopened]    
+    types: [opened, reopened, edited]    
 
 jobs:
   check_pr:
