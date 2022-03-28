@@ -2,6 +2,7 @@
     
     "chainId": 1,
     "address": "123",
+    "name": "1234",
     "metadata":{},
     "version": 2,
     "checkPoints": []
