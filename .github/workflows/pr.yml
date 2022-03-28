@@ -1,0 +1,24 @@
+name: check pr
+
+on:
+  pull_request:
+    types: [opened, reopened]    
+
+jobs:
+  check_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@main
+      - name: Set up Python 3.7
+        uses: actions/setup-python@main
+        with:
+          python-version: '3.7'
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v18.4
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            python check_file.py file
+          done
