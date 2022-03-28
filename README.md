@@ -53,6 +53,7 @@ The “metadata” field follows the [contract metadata](https://docs.solidityla
 
 ## Contributors
 [Chef-Cheems](https://github.com/Chef-Cheems) from [pancakeswap](https://pancakeswap.finance/)
+[LufyCZ](https://github.com/LufyCZ) from [sushiswap](https://www.sushi.com/)
 
 ## Wallet Supports Transaction ABI Decoding
 - [Keystone Hardware Wallet](https://support.keyst.one/advanced-features/decode-defi-transactions)
