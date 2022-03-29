@@ -1,0 +1,700 @@
+{
+  "name": "WBTC-ONE LP",
+  "chainId": 1666600000,
+  "address": "0xe76583ba8b7c5177d7fba05a0bad25e4bffc7bd7",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": []
+        },
+        {
+          "name": "Approval",
+          "anonymous": false,
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "owner",
+              "indexed": true
+            },
+            {
+              "name": "spender",
+              "type": "address",
+              "indexed": true,
+              "internalType": "address"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "type": "address",
+              "name": "sender"
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "amount0",
+              "indexed": false
+            },
+            {
+              "name": "amount1",
+              "type": "uint256",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "indexed": true,
+              "name": "to",
+              "internalType": "address"
+            }
+          ],
+          "name": "Burn",
+          "anonymous": false,
+          "type": "event"
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "Mint",
+          "inputs": [
+            {
+              "name": "sender",
+              "internalType": "address",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "indexed": false,
+              "name": "amount0",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "amount1",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "sender",
+              "type": "address",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount0In",
+              "indexed": false,
+              "type": "uint256"
+            },
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "indexed": false,
+              "name": "amount1In"
+            },
+            {
+              "indexed": false,
+              "name": "amount0Out",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "amount1Out",
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "anonymous": false,
+          "name": "Swap"
+        },
+        {
+          "inputs": [
+            {
+              "indexed": false,
+              "type": "uint112",
+              "internalType": "uint112",
+              "name": "reserve0"
+            },
+            {
+              "name": "reserve1",
+              "type": "uint112",
+              "internalType": "uint112",
+              "indexed": false
+            }
+          ],
+          "name": "Sync",
+          "anonymous": false,
+          "type": "event"
+        },
+        {
+          "name": "Transfer",
+          "type": "event",
+          "anonymous": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "indexed": true,
+              "type": "address",
+              "name": "from"
+            },
+            {
+              "type": "address",
+              "name": "to",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "type": "function",
+          "stateMutability": "view",
+          "name": "DOMAIN_SEPARATOR",
+          "outputs": [
+            {
+              "name": "",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            }
+          ]
+        },
+        {
+          "name": "MINIMUM_LIQUIDITY",
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "bytes32",
+              "type": "bytes32"
+            }
+          ],
+          "type": "function",
+          "name": "PERMIT_TYPEHASH",
+          "inputs": []
+        },
+        {
+          "type": "function",
+          "inputs": [
+            {
+              "name": "",
+              "internalType": "address",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ],
+          "stateMutability": "view",
+          "name": "allowance"
+        },
+        {
+          "outputs": [
+            {
+              "name": "",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ],
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "name": "approve",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "spender",
+              "internalType": "address"
+            },
+            {
+              "name": "value",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "balanceOf",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "decimals",
+          "type": "function",
+          "outputs": [
+            {
+              "type": "uint8",
+              "internalType": "uint8",
+              "name": ""
+            }
+          ],
+          "stateMutability": "view",
+          "inputs": []
+        },
+        {
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "factory",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "kLast",
+          "type": "function",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "inputs": [],
+          "name": "name",
+          "outputs": [
+            {
+              "name": "",
+              "type": "string",
+              "internalType": "string"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "name": "nonces",
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "outputs": [],
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "spender"
+            },
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "value"
+            },
+            {
+              "name": "deadline",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint8",
+              "internalType": "uint8",
+              "name": "v"
+            },
+            {
+              "type": "bytes32",
+              "internalType": "bytes32",
+              "name": "r"
+            },
+            {
+              "internalType": "bytes32",
+              "type": "bytes32",
+              "name": "s"
+            }
+          ],
+          "name": "permit",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "inputs": [],
+          "type": "function",
+          "name": "price0CumulativeLast",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "price1CumulativeLast"
+        },
+        {
+          "inputs": [],
+          "name": "swapFee",
+          "type": "function",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "type": "uint32",
+              "name": "",
+              "internalType": "uint32"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "symbol",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "string",
+              "name": "",
+              "internalType": "string"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "name": "token0",
+          "inputs": [],
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "type": "function"
+        },
+        {
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": ""
+            }
+          ],
+          "name": "token1",
+          "inputs": [],
+          "type": "function"
+        },
+        {
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "totalSupply",
+          "stateMutability": "view",
+          "inputs": [],
+          "type": "function"
+        },
+        {
+          "type": "function",
+          "outputs": [
+            {
+              "name": "",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "name": "transfer",
+          "inputs": [
+            {
+              "name": "to",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "outputs": [
+            {
+              "type": "bool",
+              "name": "",
+              "internalType": "bool"
+            }
+          ],
+          "name": "transferFrom",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "from"
+            },
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "to"
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "value"
+            }
+          ],
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getReserves",
+          "stateMutability": "view",
+          "type": "function",
+          "outputs": [
+            {
+              "type": "uint112",
+              "name": "_reserve0",
+              "internalType": "uint112"
+            },
+            {
+              "type": "uint112",
+              "internalType": "uint112",
+              "name": "_reserve1"
+            },
+            {
+              "name": "_blockTimestampLast",
+              "type": "uint32",
+              "internalType": "uint32"
+            }
+          ]
+        },
+        {
+          "name": "initialize",
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_token0",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_token1",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "outputs": []
+        },
+        {
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "_swapFee",
+              "internalType": "uint32"
+            }
+          ],
+          "type": "function",
+          "outputs": [],
+          "name": "setSwapFee"
+        },
+        {
+          "name": "mint",
+          "inputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "to"
+            }
+          ],
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "liquidity",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "inputs": [
+            {
+              "name": "to",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "amount0",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "amount1",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "burn",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "inputs": [
+            {
+              "name": "amount0Out",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "amount1Out"
+            },
+            {
+              "name": "to",
+              "internalType": "address",
+              "type": "address"
+            },
+            {
+              "name": "data",
+              "type": "bytes",
+              "internalType": "bytes"
+            }
+          ],
+          "name": "swap",
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "name": "skim",
+          "stateMutability": "nonpayable",
+          "outputs": [],
+          "inputs": [
+            {
+              "name": "to",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "sync",
+          "stateMutability": "nonpayable",
+          "outputs": [],
+          "type": "function"
+        }
+      ],
+      "userdoc": {
+        "methods": {}
+      },
+      "devdoc": {
+        "methods": {}
+      }
+    }
+  },
+  "version": 1
+}

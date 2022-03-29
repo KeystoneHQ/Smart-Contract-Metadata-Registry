@@ -1,0 +1,1550 @@
+{
+  "name": "tq1ETH",
+  "chainId": 1666600000,
+  "address": "0xc63AB8c72e636C9961c5e9288b697eC5F0B8E1F7",
+  "metadata": {
+    "output": {
+      "abi": [
+        {
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "name": "underlying_",
+              "internalType": "address",
+              "type": "address"
+            },
+            {
+              "name": "comptroller_",
+              "type": "address",
+              "internalType": "contract ComptrollerInterface"
+            },
+            {
+              "name": "interestRateModel_",
+              "internalType": "contract InterestRateModel",
+              "type": "address"
+            },
+            {
+              "name": "initialExchangeRateMantissa_",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "type": "string",
+              "internalType": "string",
+              "name": "name_"
+            },
+            {
+              "internalType": "string",
+              "name": "symbol_",
+              "type": "string"
+            },
+            {
+              "internalType": "uint8",
+              "type": "uint8",
+              "name": "decimals_"
+            },
+            {
+              "name": "admin_",
+              "internalType": "address payable",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "implementation_",
+              "type": "address"
+            },
+            {
+              "name": "becomeImplementationData",
+              "type": "bytes",
+              "internalType": "bytes"
+            }
+          ],
+          "payable": false,
+          "type": "constructor"
+        },
+        {
+          "type": "event",
+          "name": "AccrueInterest",
+          "inputs": [
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "cashPrior"
+            },
+            {
+              "type": "uint256",
+              "indexed": false,
+              "name": "interestAccumulated",
+              "internalType": "uint256"
+            },
+            {
+              "name": "borrowIndex",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "indexed": false,
+              "name": "totalBorrows",
+              "type": "uint256"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "anonymous": false,
+          "type": "event",
+          "name": "Approval",
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "spender",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "indexed": false,
+              "name": "amount"
+            }
+          ]
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "indexed": false,
+              "name": "borrower"
+            },
+            {
+              "type": "uint256",
+              "name": "borrowAmount",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "accountBorrows",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "name": "totalBorrows",
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "type": "event",
+          "name": "Borrow"
+        },
+        {
+          "anonymous": false,
+          "type": "event",
+          "name": "Failure",
+          "inputs": [
+            {
+              "name": "error",
+              "type": "uint256",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "name": "info",
+              "indexed": false,
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "type": "uint256",
+              "name": "detail",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "LiquidateBorrow",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "liquidator",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "internalType": "address",
+              "indexed": false,
+              "name": "borrower"
+            },
+            {
+              "name": "repayAmount",
+              "type": "uint256",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "tqTokenCollateral",
+              "indexed": false
+            },
+            {
+              "indexed": false,
+              "name": "seizeTokens",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "anonymous": false,
+          "type": "event",
+          "inputs": [
+            {
+              "indexed": false,
+              "type": "address",
+              "name": "minter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "mintAmount",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "mintTokens",
+              "type": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "Mint"
+        },
+        {
+          "type": "event",
+          "name": "NewAdmin",
+          "inputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "oldAdmin",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "type": "address",
+              "indexed": false,
+              "name": "newAdmin"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "name": "oldComptroller",
+              "type": "address",
+              "internalType": "contract ComptrollerInterface",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "internalType": "contract ComptrollerInterface",
+              "name": "newComptroller",
+              "indexed": false
+            }
+          ],
+          "anonymous": false,
+          "name": "NewComptroller",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "name": "oldImplementation",
+              "indexed": false,
+              "internalType": "address",
+              "type": "address"
+            },
+            {
+              "name": "newImplementation",
+              "internalType": "address",
+              "indexed": false,
+              "type": "address"
+            }
+          ],
+          "type": "event",
+          "name": "NewImplementation"
+        },
+        {
+          "name": "NewMarketInterestRateModel",
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "oldInterestRateModel",
+              "internalType": "contract InterestRateModel",
+              "type": "address"
+            },
+            {
+              "name": "newInterestRateModel",
+              "indexed": false,
+              "type": "address",
+              "internalType": "contract InterestRateModel"
+            }
+          ],
+          "type": "event"
+        },
+        {
+          "name": "NewPendingAdmin",
+          "anonymous": false,
+          "type": "event",
+          "inputs": [
+            {
+              "name": "oldPendingAdmin",
+              "indexed": false,
+              "internalType": "address",
+              "type": "address"
+            },
+            {
+              "name": "newPendingAdmin",
+              "internalType": "address",
+              "indexed": false,
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "indexed": false,
+              "name": "oldProtocolSeizeShareMantissa"
+            },
+            {
+              "name": "newProtocolSeizeShareMantissa",
+              "indexed": false,
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "type": "event",
+          "anonymous": false,
+          "name": "NewProtocolSeizeShare"
+        },
+        {
+          "name": "NewReserveFactor",
+          "anonymous": false,
+          "type": "event",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "indexed": false,
+              "name": "oldReserveFactorMantissa"
+            },
+            {
+              "type": "uint256",
+              "name": "newReserveFactorMantissa",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "redeemer",
+              "indexed": false,
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "indexed": false,
+              "type": "uint256",
+              "name": "redeemAmount"
+            },
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "redeemTokens"
+            }
+          ],
+          "name": "Redeem",
+          "type": "event",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "payer",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "borrower",
+              "indexed": false,
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "indexed": false,
+              "name": "repayAmount",
+              "internalType": "uint256",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "accountBorrows",
+              "indexed": false
+            },
+            {
+              "indexed": false,
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "totalBorrows"
+            }
+          ],
+          "anonymous": false,
+          "name": "RepayBorrow"
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "name": "benefactor",
+              "internalType": "address",
+              "type": "address",
+              "indexed": false
+            },
+            {
+              "name": "addAmount",
+              "type": "uint256",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "newTotalReserves",
+              "indexed": false
+            }
+          ],
+          "name": "ReservesAdded",
+          "anonymous": false
+        },
+        {
+          "name": "ReservesReduced",
+          "type": "event",
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "admin",
+              "internalType": "address",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "reduceAmount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "indexed": false,
+              "name": "newTotalReserves"
+            }
+          ]
+        },
+        {
+          "name": "Transfer",
+          "type": "event",
+          "anonymous": false,
+          "inputs": [
+            {
+              "name": "from",
+              "internalType": "address",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "indexed": true,
+              "name": "to",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "internalType": "uint256",
+              "indexed": false,
+              "type": "uint256",
+              "name": "amount"
+            }
+          ]
+        },
+        {
+          "type": "fallback",
+          "stateMutability": "payable",
+          "payable": true
+        },
+        {
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "inputs": [],
+          "stateMutability": "view",
+          "name": "accrualBlockTimestamp",
+          "type": "function",
+          "constant": true,
+          "payable": false
+        },
+        {
+          "name": "admin",
+          "payable": false,
+          "constant": true,
+          "stateMutability": "view",
+          "type": "function",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address payable"
+            }
+          ]
+        },
+        {
+          "name": "borrowIndex",
+          "payable": false,
+          "type": "function",
+          "inputs": [],
+          "constant": true,
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "comptroller",
+          "constant": true,
+          "payable": false,
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "contract ComptrollerInterface"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "constant": true,
+          "name": "decimals",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "type": "uint8",
+              "name": ""
+            }
+          ],
+          "payable": false,
+          "type": "function"
+        },
+        {
+          "name": "implementation",
+          "stateMutability": "view",
+          "constant": true,
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "address",
+              "type": "address"
+            }
+          ],
+          "inputs": [],
+          "type": "function",
+          "payable": false
+        },
+        {
+          "constant": true,
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function",
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "contract InterestRateModel",
+              "type": "address"
+            }
+          ],
+          "name": "interestRateModel",
+          "inputs": []
+        },
+        {
+          "name": "isTqToken",
+          "type": "function",
+          "outputs": [
+            {
+              "name": "",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ],
+          "constant": true,
+          "payable": false,
+          "stateMutability": "view",
+          "inputs": []
+        },
+        {
+          "name": "name",
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "payable": false,
+          "outputs": [
+            {
+              "internalType": "string",
+              "type": "string",
+              "name": ""
+            }
+          ],
+          "constant": true
+        },
+        {
+          "outputs": [
+            {
+              "internalType": "address payable",
+              "type": "address",
+              "name": ""
+            }
+          ],
+          "name": "pendingAdmin",
+          "type": "function",
+          "constant": true,
+          "inputs": [],
+          "stateMutability": "view",
+          "payable": false
+        },
+        {
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "name": "protocolSeizeShareMantissa",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "type": "function"
+        },
+        {
+          "name": "reserveFactorMantissa",
+          "stateMutability": "view",
+          "constant": true,
+          "inputs": [],
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "type": "function"
+        },
+        {
+          "name": "symbol",
+          "inputs": [],
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "type": "string",
+              "name": "",
+              "internalType": "string"
+            }
+          ],
+          "payable": false,
+          "type": "function",
+          "constant": true
+        },
+        {
+          "name": "totalBorrows",
+          "type": "function",
+          "constant": true,
+          "payable": false,
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "inputs": []
+        },
+        {
+          "name": "totalReserves",
+          "constant": true,
+          "payable": false,
+          "inputs": [],
+          "type": "function",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "totalSupply",
+          "stateMutability": "view",
+          "payable": false,
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "constant": true,
+          "inputs": []
+        },
+        {
+          "name": "underlying",
+          "outputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": ""
+            }
+          ],
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "type": "function",
+          "inputs": []
+        },
+        {
+          "payable": false,
+          "name": "_setImplementation",
+          "outputs": [],
+          "type": "function",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "implementation_",
+              "internalType": "address"
+            },
+            {
+              "name": "allowResign",
+              "internalType": "bool",
+              "type": "bool"
+            },
+            {
+              "type": "bytes",
+              "internalType": "bytes",
+              "name": "becomeImplementationData"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "constant": false
+        },
+        {
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "constant": false,
+          "type": "function",
+          "inputs": [
+            {
+              "name": "mintAmount",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "name": "mint",
+          "payable": false
+        },
+        {
+          "name": "redeem",
+          "payable": false,
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "inputs": [
+            {
+              "name": "redeemTokens",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "constant": false
+        },
+        {
+          "name": "redeemUnderlying",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "name": "redeemAmount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "constant": false,
+          "payable": false
+        },
+        {
+          "payable": false,
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "borrow",
+          "constant": false,
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "borrowAmount",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "name": "repayAmount",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "name": "repayBorrow",
+          "stateMutability": "nonpayable",
+          "outputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ],
+          "payable": false,
+          "constant": false,
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "name": "borrower",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": "repayAmount"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "name": "repayBorrowBehalf",
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "constant": false
+        },
+        {
+          "payable": false,
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "name": "liquidateBorrow",
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "constant": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "borrower"
+            },
+            {
+              "name": "repayAmount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "tqTokenCollateral",
+              "type": "address",
+              "internalType": "contract TqTokenInterface"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "dst",
+              "type": "address"
+            },
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "amount"
+            }
+          ],
+          "name": "transfer",
+          "payable": false,
+          "outputs": [
+            {
+              "type": "bool",
+              "name": "",
+              "internalType": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "constant": false
+        },
+        {
+          "name": "transferFrom",
+          "payable": false,
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "src"
+            },
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "dst"
+            },
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "amount"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "bool",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "constant": false,
+          "type": "function"
+        },
+        {
+          "stateMutability": "nonpayable",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "spender",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "internalType": "uint256"
+            }
+          ],
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "name": "approve"
+        },
+        {
+          "type": "function",
+          "name": "allowance",
+          "inputs": [
+            {
+              "internalType": "address",
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "address",
+              "name": "spender",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "payable": false,
+          "constant": true
+        },
+        {
+          "constant": true,
+          "payable": false,
+          "type": "function",
+          "outputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ],
+          "stateMutability": "view",
+          "name": "balanceOf",
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "constant": false,
+          "name": "balanceOfUnderlying",
+          "payable": false,
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner",
+              "internalType": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "name": "getAccountSnapshot",
+          "constant": true,
+          "type": "function",
+          "inputs": [
+            {
+              "name": "account",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "payable": false,
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "constant": true,
+          "name": "borrowRatePerTimestamp",
+          "payable": false,
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": []
+        },
+        {
+          "inputs": [],
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "stateMutability": "view",
+          "name": "supplyRatePerTimestamp",
+          "payable": false,
+          "type": "function",
+          "constant": true
+        },
+        {
+          "payable": false,
+          "outputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ],
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "totalBorrowsCurrent",
+          "constant": false
+        },
+        {
+          "inputs": [
+            {
+              "name": "account",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "payable": false,
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "borrowBalanceCurrent",
+          "constant": false
+        },
+        {
+          "name": "borrowBalanceStored",
+          "stateMutability": "view",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "inputs": [
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "account"
+            }
+          ],
+          "type": "function",
+          "payable": false,
+          "constant": true
+        },
+        {
+          "stateMutability": "nonpayable",
+          "name": "exchangeRateCurrent",
+          "payable": false,
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "type": "function",
+          "inputs": [],
+          "constant": false
+        },
+        {
+          "constant": true,
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "name": "exchangeRateStored",
+          "type": "function",
+          "inputs": []
+        },
+        {
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "inputs": [],
+          "payable": false,
+          "type": "function",
+          "stateMutability": "view",
+          "name": "getCash",
+          "constant": true
+        },
+        {
+          "constant": false,
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "accrueInterest"
+        },
+        {
+          "type": "function",
+          "name": "seize",
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "inputs": [
+            {
+              "name": "liquidator",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "internalType": "address",
+              "name": "borrower"
+            },
+            {
+              "internalType": "uint256",
+              "name": "seizeTokens",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "constant": false,
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "inputs": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "contract EIP20NonStandardInterface"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "outputs": [],
+          "name": "sweepToken",
+          "payable": false,
+          "constant": false
+        },
+        {
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "type": "function",
+          "constant": false,
+          "name": "_setPendingAdmin",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "newPendingAdmin",
+              "internalType": "address payable"
+            }
+          ],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "constant": false,
+          "name": "_setComptroller",
+          "inputs": [
+            {
+              "internalType": "contract ComptrollerInterface",
+              "type": "address",
+              "name": "newComptroller"
+            }
+          ],
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "payable": false,
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "name": "newReserveFactorMantissa",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "payable": false,
+          "name": "_setReserveFactor",
+          "constant": false,
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "type": "uint256",
+              "name": ""
+            }
+          ],
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "payable": false,
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "name": "_acceptAdmin",
+          "type": "function",
+          "constant": false,
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "inputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": "addAmount"
+            }
+          ],
+          "constant": false,
+          "name": "_addReserves",
+          "stateMutability": "nonpayable",
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "payable": false
+        },
+        {
+          "constant": false,
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "payable": false,
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "reduceAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "_reduceReserves",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "constant": false,
+          "outputs": [
+            {
+              "type": "uint256",
+              "internalType": "uint256",
+              "name": ""
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "name": "_setInterestRateModel",
+          "type": "function",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "newInterestRateModel",
+              "internalType": "contract InterestRateModel"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "_setProtocolSeizeShare",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "newProtocolSeizeShareMantissa",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "payable": false,
+          "outputs": [
+            {
+              "name": "",
+              "internalType": "uint256",
+              "type": "uint256"
+            }
+          ],
+          "constant": false
+        },
+        {
+          "payable": false,
+          "outputs": [
+            {
+              "name": "",
+              "type": "bytes",
+              "internalType": "bytes"
+            }
+          ],
+          "type": "function",
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "name": "delegateToImplementation",
+          "constant": false
+        },
+        {
+          "name": "delegateToViewImplementation",
+          "stateMutability": "view",
+          "payable": false,
+          "type": "function",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "",
+              "type": "bytes"
+            }
+          ],
+          "constant": true,
+          "inputs": [
+            {
+              "type": "bytes",
+              "name": "data",
+              "internalType": "bytes"
+            }
+          ]
+        }
+      ],
+      "userdoc": {
+        "methods": {}
+      },
+      "devdoc": {
+        "methods": {}
+      }
+    }
+  },
+  "version": 1
+}
