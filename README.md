@@ -27,7 +27,9 @@ For each json file, there are these fields:
     "address": string, // contract address required
     "metadata":  json, // contract metadata required
     "version": number // contract version number required
-    "checkPoints": [] // reserved field optional
+    "checkPoints": [], // reserved field optional
+    "isProxy": boolean, // whether this is an proxy contract which follows [EIP-1967](https://eips.ethereum.org/EIPS/eip-1967) optional
+    "principalAddress": the principal contract address if this is an proxy contract optinal.
 }
 ```
 The “Address” and “metadata” are two required fields. The address follows the [EIP 55 address checksum format](https://github.com/ethereum/EIPs/issues/55).
@@ -50,6 +52,9 @@ The “metadata” field follows the [contract metadata](https://docs.solidityla
 }
 
 ```
+
+### Proxy Contract
+For proxy contract which follows the EIP-1967, please fill the abi of your origin contract instead of the proxy contract and set the `isProxy` field to `true` and set the your origin contract address to the `principalAddress` field.
 
 ## Contributors
 - <img src="https://www.sushi.com/_next/static/media/logo.d019d88b.png" width="20"/> [sushiswap](https://www.sushi.com/) by [LufyCZ](https://github.com/LufyCZ)
