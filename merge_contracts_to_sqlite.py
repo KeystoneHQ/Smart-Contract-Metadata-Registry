@@ -67,7 +67,7 @@ def get_contract_info(contract_path):
             content_address = content["address"].lower()
             contract_name = content["name"]
             contract_metadate = json.dumps(content["metadata"])
-            contract_version = int(content.get("version", 1))
+            contract_version = 1
             contract_checkPoints = json.dumps(content.get("checkPoints",[]))
         except:
             raise
