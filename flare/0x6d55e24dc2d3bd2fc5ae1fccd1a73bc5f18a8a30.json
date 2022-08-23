@@ -1,0 +1,1486 @@
+{
+    "name": "FTSO Reward Manager",
+    "chainId": 14,
+    "address": "0x6D55E24Dc2d3bD2Fc5Ae1fcCD1A73bc5f18A8A30",
+    "metadata": {
+        "compiler": {
+            "version": "v0.7.6+commit.7338295f"
+        },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "type": "constructor",
+                    "stateMutability": "nonpayable",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_governance",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_addressUpdater",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_oldFtsoRewardManager",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_feePercentageUpdateOffset",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_defaultFeePercentage",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "name": "AllowedClaimRecipientsChanged",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "rewardOwner",
+                            "internalType": "address",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "recipients",
+                            "internalType": "address[]",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "ClaimExecutorsChanged",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "rewardOwner",
+                            "internalType": "address",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "executors",
+                            "internalType": "address[]",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "DailyAuthorizedInflationSet",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "authorizedAmountWei",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "FeePercentageChanged",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "dataProvider",
+                            "internalType": "address",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "value",
+                            "internalType": "uint256",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "validFromEpoch",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "GovernanceCallTimelocked",
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "selector",
+                            "internalType": "bytes4",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "allowedAfterTimestamp",
+                            "internalType": "uint256",
+                            "indexed": false
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "encodedCall",
+                            "internalType": "bytes",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "GovernanceInitialised",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "initialGovernance",
+                            "internalType": "address",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "GovernedProductionModeEntered",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "governanceSettings",
+                            "internalType": "address",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "InflationReceived",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "amountReceivedWei",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "RewardClaimed",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "dataProvider",
+                            "internalType": "address",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "whoClaimed",
+                            "internalType": "address",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "sentTo",
+                            "internalType": "address",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "rewardEpoch",
+                            "internalType": "uint256",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "RewardClaimsEnabled",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "rewardEpochId",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "RewardClaimsExpired",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "rewardEpochId",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "RewardsBurned",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "amountBurnedWei",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "RewardsDistributed",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "ftso",
+                            "internalType": "address",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "epochId",
+                            "internalType": "uint256",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "addresses",
+                            "internalType": "address[]",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "rewards",
+                            "internalType": "uint256[]",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "TimelockedGovernanceCallCanceled",
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "selector",
+                            "internalType": "bytes4",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "timestamp",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "TimelockedGovernanceCallExecuted",
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "selector",
+                            "internalType": "bytes4",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "timestamp",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "event",
+                    "name": "UnearnedRewardsAccrued",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "epochId",
+                            "internalType": "uint256",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "reward",
+                            "internalType": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "anonymous": false
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "accrueUnearnedRewards",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_epochId",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_priceEpochDurationSeconds",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_priceEpochEndTime",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "activate",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "bool",
+                            "name": "",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "name": "active",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address[]",
+                            "name": "",
+                            "internalType": "address[]"
+                        }
+                    ],
+                    "name": "allowedClaimRecipients",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_rewardOwner",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "cancelGovernanceCall",
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "_selector",
+                            "internalType": "bytes4"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "claimAndWrapReward",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_recipient",
+                            "internalType": "address payable"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardEpochs",
+                            "internalType": "uint256[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "claimAndWrapRewardByExecutor",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_rewardOwner",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_recipient",
+                            "internalType": "address payable"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardEpochs",
+                            "internalType": "uint256[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "claimAndWrapRewardFromDataProviders",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_recipient",
+                            "internalType": "address payable"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardEpochs",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "_dataProviders",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "claimAndWrapRewardFromDataProvidersByExecutor",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_rewardOwner",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_recipient",
+                            "internalType": "address payable"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardEpochs",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "_dataProviders",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address[]",
+                            "name": "",
+                            "internalType": "address[]"
+                        }
+                    ],
+                    "name": "claimExecutors",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_rewardOwner",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "claimReward",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_recipient",
+                            "internalType": "address payable"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardEpochs",
+                            "internalType": "uint256[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "claimRewardFromDataProviders",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_recipient",
+                            "internalType": "address payable"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardEpochs",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "_dataProviders",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "closeExpiredRewardEpoch",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "deactivate",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "defaultFeePercentage",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "distributeRewards",
+                    "inputs": [
+                        {
+                            "type": "address[]",
+                            "name": "_addresses",
+                            "internalType": "address[]"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_weights",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalWeight",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_epochId",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_ftso",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_priceEpochDurationSeconds",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_currentRewardEpoch",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_priceEpochEndTime",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_votePowerBlock",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "enableClaims",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "executeGovernanceCall",
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "_selector",
+                            "internalType": "bytes4"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "feePercentageUpdateOffset",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "firstClaimableRewardEpoch",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "contract IIFtsoManager"
+                        }
+                    ],
+                    "name": "ftsoManager",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "_addressUpdater",
+                            "internalType": "address"
+                        }
+                    ],
+                    "name": "getAddressUpdater",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "bool",
+                            "name": "_claimed",
+                            "internalType": "bool"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getClaimedReward",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_dataProvider",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_claimer",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "pure",
+                    "outputs": [
+                        {
+                            "type": "string",
+                            "name": "",
+                            "internalType": "string"
+                        }
+                    ],
+                    "name": "getContractName",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getCurrentRewardEpoch",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getDataProviderCurrentFeePercentage",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_dataProvider",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_feePercentageBIPS",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getDataProviderFeePercentage",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_dataProvider",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardAmount",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_votePowerIgnoringRevocation",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getDataProviderPerformanceInfo",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_dataProvider",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256[]",
+                            "name": "_feePercentageBIPS",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_validFromEpoch",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "bool[]",
+                            "name": "_fixed",
+                            "internalType": "bool[]"
+                        }
+                    ],
+                    "name": "getDataProviderScheduledFeePercentageChanges",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_dataProvider",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_totalReward",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_claimedReward",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getEpochReward",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_startEpochId",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_endEpochId",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getEpochsWithClaimableRewards",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256[]",
+                            "name": "_epochIds",
+                            "internalType": "uint256[]"
+                        }
+                    ],
+                    "name": "getEpochsWithUnclaimedRewards",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_beneficiary",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "address"
+                        }
+                    ],
+                    "name": "getInflationAddress",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_initialRewardEpoch",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getInitialRewardEpoch",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getRewardEpochToExpireNext",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getRewardEpochVotePowerBlock",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address[]",
+                            "name": "_dataProviders",
+                            "internalType": "address[]"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardAmounts",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "bool[]",
+                            "name": "_claimed",
+                            "internalType": "bool[]"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "_claimable",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "name": "getStateOfRewards",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_beneficiary",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256[]",
+                            "name": "_rewardAmounts",
+                            "internalType": "uint256[]"
+                        },
+                        {
+                            "type": "bool[]",
+                            "name": "_claimed",
+                            "internalType": "bool[]"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "_claimable",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "name": "getStateOfRewardsFromDataProviders",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_beneficiary",
+                            "internalType": "address"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "_dataProviders",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_lockedFundsWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalInflationAuthorizedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalClaimedWei",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getTokenPoolSupplyData",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_totalAwardedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalClaimedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalExpiredWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalUnearnedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalBurnedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalInflationAuthorizedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalInflationReceivedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_totalSelfDestructReceivedWei",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_lastInflationAuthorizationReceivedTs",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_dailyAuthorizedInflation",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getTotals",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_amount",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_weight",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "getUnclaimedReward",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_rewardEpoch",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_dataProvider",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "address"
+                        }
+                    ],
+                    "name": "governance",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "contract IGovernanceSettings"
+                        }
+                    ],
+                    "name": "governanceSettings",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "initialise",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_initialGovernance",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "address"
+                        }
+                    ],
+                    "name": "newFtsoRewardManager",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "address"
+                        }
+                    ],
+                    "name": "oldFtsoRewardManager",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "bool",
+                            "name": "",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "name": "productionMode",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "payable",
+                    "outputs": [],
+                    "name": "receiveInflation",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "setAllowedClaimRecipients",
+                    "inputs": [
+                        {
+                            "type": "address[]",
+                            "name": "_recipients",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "setClaimExecutors",
+                    "inputs": [
+                        {
+                            "type": "address[]",
+                            "name": "_executors",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "setDailyAuthorizedInflation",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_toAuthorizeWei",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "name": "setDataProviderFeePercentage",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_feePercentageBIPS",
+                            "internalType": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "setInitialRewardData",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "setNewFtsoRewardManager",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_newFtsoRewardManager",
+                            "internalType": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "contract Supply"
+                        }
+                    ],
+                    "name": "supply",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "switchToProductionMode",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "allowedAfterTimestamp",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "encodedCall",
+                            "internalType": "bytes"
+                        }
+                    ],
+                    "name": "timelockedCalls",
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "",
+                            "internalType": "bytes4"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "nonpayable",
+                    "outputs": [],
+                    "name": "updateContractAddresses",
+                    "inputs": [
+                        {
+                            "type": "bytes32[]",
+                            "name": "_contractNameHashes",
+                            "internalType": "bytes32[]"
+                        },
+                        {
+                            "type": "address[]",
+                            "name": "_contractAddresses",
+                            "internalType": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "stateMutability": "view",
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "",
+                            "internalType": "contract WNat"
+                        }
+                    ],
+                    "name": "wNat",
+                    "inputs": []
+                }
+            ]
+        },
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 200
+            }
+        },
+        "version": 1
+    },
+    "version": 1,
+    "checkPoints": []
+}
