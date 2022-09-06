@@ -1,0 +1,1 @@
+{"name": "pandora", "chainId": 1, "address": "0x943d3E6B97EB93e29004165eBF7b64697b0Ae00B", "metadata": {"output": {"abi": [{"inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor"}, {"payable": true, "stateMutability": "payable", "type": "fallback"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
