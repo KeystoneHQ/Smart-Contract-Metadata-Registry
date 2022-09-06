@@ -1,0 +1,1 @@
+{"name": "Naive", "chainId": 1, "address": "0xeb70029CFB3C53c778EAf68Cd28de725390A1fE9", "metadata": {"output": {"abi": [{"anonymous": false, "inputs": [], "name": "Batch", "type": "event"}, {"stateMutability": "nonpayable", "type": "fallback"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
