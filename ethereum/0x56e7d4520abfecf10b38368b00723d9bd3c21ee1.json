@@ -1,1 +1,1 @@
-{"name": "dYdX: Operation Impl", "address": "0x56e7d4520abfecf10b38368b00723d9bd3c21ee1", "metadata": {"output": {"abi": []}}, "version": 1, "checkPoints": []}
+{"name": "OperationImpl", "chainId": 1, "address": "0x56E7d4520ABFECf10b38368b00723d9BD3c21ee1", "metadata": {"output": {"abi": []}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
