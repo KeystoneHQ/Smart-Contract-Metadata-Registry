@@ -1,0 +1,1 @@
+{"name": "RockMinter", "chainId": 1, "address": "0xC314D734EAe9B3926C15BC2C89596822B541EFfd", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "uint256", "name": "id", "type": "uint256"}], "name": "buy", "outputs": [], "stateMutability": "nonpayable", "type": "function"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
