@@ -1,0 +1,1 @@
+{"name": "Faucet", "chainId": 1, "address": "0x793AE8C1b1a160BFc07BFB0d04F85eab1A71F4f2", "metadata": {"output": {"abi": [{"constant": false, "inputs": [], "name": "getWei", "outputs": [{"name": "", "type": "bool"}], "type": "function"}, {"inputs": [], "type": "constructor"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
