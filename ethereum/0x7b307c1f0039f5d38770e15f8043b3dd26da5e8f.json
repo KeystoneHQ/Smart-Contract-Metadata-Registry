@@ -1,0 +1,1 @@
+{"name": "EasyInvest", "chainId": 1, "address": "0x7B307C1F0039f5D38770E15f8043b3dD26da5E8f", "metadata": {"output": {"abi": [{"payable": true, "stateMutability": "payable", "type": "fallback"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
