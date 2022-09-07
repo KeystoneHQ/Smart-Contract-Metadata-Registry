@@ -1,0 +1,1 @@
+{"name": "SafeSwapper", "chainId": 56, "address": "0xD7c65f4313d59AE64e888E257C1D90BF10de396b", "metadata": {"output": {"abi": [{"inputs": [], "stateMutability": "nonpayable", "type": "constructor"}, {"stateMutability": "payable", "type": "receive"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
