@@ -1,0 +1,1 @@
+{"name": "MultiSendCallOnly", "chainId": 1, "address": "0x40A2aCCbd92BCA938b02010E17A5b8929b49130D", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "bytes", "name": "transactions", "type": "bytes"}], "name": "multiSend", "outputs": [], "stateMutability": "payable", "type": "function"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
