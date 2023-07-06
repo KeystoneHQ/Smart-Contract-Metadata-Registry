@@ -52,6 +52,8 @@ def printProgressBar(
     if iteration == total:
         print()
 
+connection_pool = {};
+
 def create_db_table(path):
     conn = sqlite3.connect(path)
     cursor = conn.cursor()
@@ -82,6 +84,11 @@ def create_db_table(path):
 def get_or_create_db_table(path):
     if not os.path.exists(path):
         create_db_table(path)
+        conn = sqlite3.connect(path)
+        connection_pool[f"{path}"] = conn
+        return conn
+    else:
+        return connection_pool[f"{path}"]
 
 def caclulate_selector_id(function_name_with_type):
     bytes_for_function = bytes(function_name_with_type, 'utf-8')
@@ -145,8 +152,7 @@ def merge_abis_to_sqlite(chain_name, db_target_path, contracts_path):
             if file.endswith(".json"):
                 db_sharding_index = file[2]
                 path = f"{db_target_path}/{CHAIN_ID_MAP[chain_name]}_{db_sharding_index.lower()}_contracts.db"
-                get_or_create_db_table(path)
-                conn = sqlite3.connect(path)
+                conn = get_or_create_db_table(path)
                 cursor = conn.cursor()
 
                 try:
@@ -166,16 +172,17 @@ def merge_abis_to_sqlite(chain_name, db_target_path, contracts_path):
             
                 cursor.close()
                 conn.commit()
-                conn.close()
 
 
 if __name__ == "__main__":
-    ignored = [".github", ".git", "outputs", "v3"]
+    ignored = [".github", ".git", "outputs", "v3","ethereum", "bsc"]
     targets = [ name for name in os.listdir('.') if os.path.isdir(os.path.join('.', name)) and name not in ignored]
+    shutil.rmtree("./outputs", ignore_errors=True)
     if not os.path.exists("./outputs/contracts/g3"):
         os.makedirs("./outputs/contracts/g3")
     db_target_path = "./outputs/contracts/g3"
     for each_target in targets:
         path = f"./{each_target}/"
         merge_abis_to_sqlite(each_target, db_target_path, contracts_path=path)
+        [each.close() for each in connection_pool.values()]
     shutil.make_archive('contracts_g3', 'zip', root_dir='./outputs', base_dir='contracts/g3')
