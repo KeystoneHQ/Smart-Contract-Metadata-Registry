@@ -15,9 +15,12 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.7'
-      - name: Build
+      - name: Build G2
         run: |
           python merge_contracts_to_sqlite.py
+      - name: Build G3
+        run: |
+          python v3/generate_abi_dbs.py
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
