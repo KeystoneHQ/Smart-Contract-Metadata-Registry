@@ -143,7 +143,7 @@ def merge_abis_to_sqlite(chain_name, db_target_path, contracts_path):
         location = 0
         for file in fileslist:
             if file.endswith(".json"):
-                db_sharding_index = file[2:4]
+                db_sharding_index = file[2]
                 path = f"{db_target_path}/{CHAIN_ID_MAP[chain_name]}_{db_sharding_index.lower()}_contracts.db"
                 get_or_create_db_table(path)
                 conn = sqlite3.connect(path)
@@ -172,11 +172,10 @@ def merge_abis_to_sqlite(chain_name, db_target_path, contracts_path):
 if __name__ == "__main__":
     ignored = [".github", ".git", "outputs", "v3"]
     targets = [ name for name in os.listdir('.') if os.path.isdir(os.path.join('.', name)) and name not in ignored]
-    if not os.path.exists("./outputs/contracts/ethereum"):
-        os.makedirs("./outputs/contracts/ethereum")
-    # DB="./outputs/contracts/ethereum/contracts.db"
-    db_target_path = "./outputs/contracts"
-    # create_db_table(DB)
+    if not os.path.exists("./outputs/contracts/g3"):
+        os.makedirs("./outputs/contracts/g3")
+    db_target_path = "./outputs/contracts/g3"
     for each_target in targets:
         path = f"./{each_target}/"
         merge_abis_to_sqlite(each_target, db_target_path, contracts_path=path)
+    shutil.make_archive('contracts_g3', 'zip', root_dir='./outputs', base_dir='contracts/g3')
