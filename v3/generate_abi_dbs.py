@@ -175,9 +175,10 @@ def merge_abis_to_sqlite(chain_name, db_target_path, contracts_path):
 
 
 if __name__ == "__main__":
-    ignored = [".github", ".git", "outputs", "v3","ethereum", "bsc"]
+    ignored = [".github", ".git", "outputs", "v3"]
     targets = [ name for name in os.listdir('.') if os.path.isdir(os.path.join('.', name)) and name not in ignored]
-    shutil.rmtree("./outputs", ignore_errors=True)
+    if os.path.exists("./outputs"):
+        shutil.rmtree("./outputs", ignore_errors=True)
     if not os.path.exists("./outputs/contracts/g3"):
         os.makedirs("./outputs/contracts/g3")
     db_target_path = "./outputs/contracts/g3"
