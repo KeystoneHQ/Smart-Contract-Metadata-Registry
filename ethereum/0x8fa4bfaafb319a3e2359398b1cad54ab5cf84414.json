@@ -1,0 +1,1 @@
+{"name": "AyeAyeGet", "chainId": 1, "address": "0x8fa4bfaafB319a3e2359398B1Cad54ab5CF84414", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "uint256", "name": "n", "type": "uint256"}], "name": "grab", "outputs": [], "stateMutability": "nonpayable", "type": "function"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
