@@ -1,0 +1,1 @@
+{"name": "ClaimAyeAye", "chainId": 1, "address": "0x299f9496781d6A469c838AbD7DC7bb0351c54532", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "uint256", "name": "n", "type": "uint256"}], "name": "grab", "outputs": [], "stateMutability": "nonpayable", "type": "function"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
