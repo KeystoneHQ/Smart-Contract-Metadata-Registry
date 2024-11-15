@@ -1,0 +1,562 @@
+{
+  "name": "FtsoRewardOffersManager",
+  "chainId": 19,
+  "address": "0x5aB9cB258a342001C4663D9526A1c54cCcF8C545",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "uint128",
+              "name": "_minimalRewardsOfferValueWei",
+              "internalType": "uint128"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "authorizedAmountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "DailyAuthorizedInflationSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountReceivedWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "InflationReceived",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "rewardEpochId",
+              "internalType": "uint24",
+              "indexed": true
+            },
+            {
+              "type": "bytes",
+              "name": "feedIds",
+              "internalType": "bytes",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "decimals",
+              "internalType": "bytes",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint16",
+              "name": "minRewardedTurnoutBIPS",
+              "internalType": "uint16",
+              "indexed": false
+            },
+            {
+              "type": "uint24",
+              "name": "primaryBandRewardSharePPM",
+              "internalType": "uint24",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "secondaryBandWidthPPMs",
+              "internalType": "bytes",
+              "indexed": false
+            },
+            {
+              "type": "uint16",
+              "name": "mode",
+              "internalType": "uint16",
+              "indexed": false
+            }
+          ],
+          "name": "InflationRewardsOffered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "valueWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MinimalRewardsOfferValueSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "rewardEpochId",
+              "internalType": "uint24",
+              "indexed": true
+            },
+            {
+              "type": "bytes21",
+              "name": "feedId",
+              "internalType": "bytes21",
+              "indexed": false
+            },
+            {
+              "type": "int8",
+              "name": "decimals",
+              "internalType": "int8",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint16",
+              "name": "minRewardedTurnoutBIPS",
+              "internalType": "uint16",
+              "indexed": false
+            },
+            {
+              "type": "uint24",
+              "name": "primaryBandRewardSharePPM",
+              "internalType": "uint24",
+              "indexed": false
+            },
+            {
+              "type": "uint24",
+              "name": "secondaryBandWidthPPM",
+              "internalType": "uint24",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "claimBackAddress",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "RewardsOffered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "dailyAuthorizedInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareSystemsManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoFeedDecimals"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoInflationConfigurations"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [],
+          "name": "getContractName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getExpectedBalance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getInflationAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getTokenPoolSupplyData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastInflationAuthorizationReceivedTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastInflationReceivedTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "minimalRewardsOfferValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "_nextRewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "tuple[]",
+              "name": "_offers",
+              "internalType": "struct IFtsoRewardOffersManager.Offer[]"
+            }
+          ],
+          "name": "offerRewards"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [],
+          "name": "receiveInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_toAuthorizeWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setDailyAuthorizedInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint128",
+              "name": "_minimalRewardsOfferValueWei",
+              "internalType": "uint128"
+            }
+          ],
+          "name": "setMinimalRewardsOfferValue"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalInflationAuthorizedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalInflationReceivedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalInflationRewardsOfferedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "_currentRewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "uint64",
+              "name": "_currentRewardEpochExpectedEndTs",
+              "internalType": "uint64"
+            },
+            {
+              "type": "uint64",
+              "name": "_rewardEpochDurationSeconds",
+              "internalType": "uint64"
+            }
+          ],
+          "name": "triggerRewardEpochSwitchover"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

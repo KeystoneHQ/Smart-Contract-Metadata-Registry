@@ -1,0 +1,345 @@
+{
+  "name": "RandomNumberV2",
+  "chainId": 19,
+  "address": "0x67a916E175a2aF01369294739AA60dDdE1Fad189",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple",
+              "name": "_initialConfig",
+              "internalType": "struct IRelay.RelayInitialConfig"
+            },
+            {
+              "type": "address",
+              "name": "_signingPolicySetter",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint8",
+              "name": "protocolId",
+              "internalType": "uint8",
+              "indexed": true
+            },
+            {
+              "type": "uint32",
+              "name": "votingRoundId",
+              "internalType": "uint32",
+              "indexed": true
+            },
+            {
+              "type": "bool",
+              "name": "isSecureRandom",
+              "internalType": "bool",
+              "indexed": false
+            },
+            {
+              "type": "bytes32",
+              "name": "merkleRoot",
+              "internalType": "bytes32",
+              "indexed": false
+            }
+          ],
+          "name": "ProtocolMessageRelayed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "rewardEpochId",
+              "internalType": "uint24",
+              "indexed": true
+            },
+            {
+              "type": "uint32",
+              "name": "startVotingRoundId",
+              "internalType": "uint32",
+              "indexed": false
+            },
+            {
+              "type": "uint16",
+              "name": "threshold",
+              "internalType": "uint16",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "seed",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "voters",
+              "internalType": "address[]",
+              "indexed": false
+            },
+            {
+              "type": "uint16[]",
+              "name": "weights",
+              "internalType": "uint16[]",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "signingPolicyBytes",
+              "internalType": "bytes",
+              "indexed": false
+            },
+            {
+              "type": "uint64",
+              "name": "timestamp",
+              "internalType": "uint64",
+              "indexed": false
+            }
+          ],
+          "name": "SigningPolicyInitialized",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpochId",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "SigningPolicyRelayed",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "feeCollectionAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRandomNumber"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_votingRoundId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getRandomNumberHistorical"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_timestamp",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVotingRoundId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes",
+              "name": "_relayMessage",
+              "internalType": "bytes"
+            },
+            {
+              "type": "tuple",
+              "name": "_config",
+              "internalType": "struct IRelay.RelayGovernanceConfig"
+            }
+          ],
+          "name": "governanceFeeSetup"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_protocolId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_votingRoundId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "isFinalized"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastInitializedRewardEpochData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_protocolId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_votingRoundId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "merkleRoots"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "protocolFeeInWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "relay"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple",
+              "name": "_signingPolicy",
+              "internalType": "struct IIRelay.SigningPolicy"
+            }
+          ],
+          "name": "setSigningPolicy"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "signingPolicySetter"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "startingVotingRoundIds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "stateData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "toSigningPolicyHash"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_protocolId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_votingRoundId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "bytes32",
+              "name": "_leaf",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32[]",
+              "name": "_proof",
+              "internalType": "bytes32[]"
+            }
+          ],
+          "name": "verify"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes",
+              "name": "_relayMessage",
+              "internalType": "bytes"
+            },
+            {
+              "type": "bytes32",
+              "name": "_messageHash",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "verifyCustomSignature"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}
