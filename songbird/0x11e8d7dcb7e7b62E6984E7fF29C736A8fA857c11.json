@@ -1,0 +1,357 @@
+{
+  "name": "InflationAllocation",
+  "chainId": 19,
+  "address": "0x11e8d7dcb7e7b62E6984E7fF29C736A8fA857c11",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_timeSlotInflationScheduleBips",
+              "internalType": "uint256[]"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getSharingPercentages"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "getTimeSlotPercentageBips"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "inflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "inflationReceivers"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastTimeSlotInflationPercentageBips"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_inflationReceivers",
+              "internalType": "contract IIInflationReceiver[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_percentagePerReceiverBips",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "setSharingPercentages"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "_timeSlotInflationScheduleBips",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "setTimeSlotInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "timeSlotInflationPercentagesBips"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "oldAddress",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "newAddress",
+              "indexed": false
+            }
+          ],
+          "name": "InflationSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "inflationReceivers",
+              "indexed": false
+            },
+            {
+              "type": "uint256[]",
+              "name": "percentagePerReceiverBips",
+              "indexed": false
+            }
+          ],
+          "name": "InflationSharingPercentagesSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "timeSlotInflationPercentagesBips",
+              "indexed": false
+            }
+          ],
+          "name": "TimeSlotInflationPercentageScheduleSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "percentageBips",
+              "indexed": false
+            }
+          ],
+          "name": "TimeSlotInflationPercentageYielded",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        }
+      ],
+      "settings": {
+        "evmVersion": "default",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

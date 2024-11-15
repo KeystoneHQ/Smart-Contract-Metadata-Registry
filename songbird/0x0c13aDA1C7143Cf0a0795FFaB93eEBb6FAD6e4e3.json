@@ -1,0 +1,246 @@
+{
+  "name": "StateConnector",
+  "chainId": 19,
+  "address": "0x0c13aDA1C7143Cf0a0795FFaB93eEBb6FAD6e4e3",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "sender",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "data",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "AttestationRequest",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "roundId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "bytes32",
+              "name": "merkleRoot",
+              "internalType": "bytes32",
+              "indexed": false
+            }
+          ],
+          "name": "RoundFinalised",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "BUFFER_TIMESTAMP_OFFSET"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "BUFFER_WINDOW"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "SIGNAL_COINBASE"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "TOTAL_STORED_BUFFERS"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "TOTAL_STORED_PROOFS"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "attestorAddressMapping"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "buffers"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_bufferNumber",
+              "internalType": "uint256"
+            },
+            {
+              "type": "bytes32",
+              "name": "_merkleRoot",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "finaliseRound"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_bufferNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getAttestation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastFinalizedRoundId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_roundId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "merkleRoot"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "merkleRoots"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes",
+              "name": "_data",
+              "internalType": "bytes"
+            }
+          ],
+          "name": "requestAttestations"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_bufferNumber",
+              "internalType": "uint256"
+            },
+            {
+              "type": "bytes32",
+              "name": "_commitHash",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "_merkleRoot",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "_randomNumber",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "submitAttestation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalBuffers"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_updatedAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "updateAttestorAddressMapping"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

@@ -1,0 +1,1044 @@
+{
+  "name": "EntityManager",
+  "chainId": 19,
+  "address": "0x46C417D0760198E94fee455CE0e223262a3D0049",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            },
+            {
+              "type": "uint32",
+              "name": "_maxNodeIdsPerEntity",
+              "internalType": "uint32"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "inputs": [
+            {
+              "type": "uint8",
+              "name": "bits",
+              "internalType": "uint8"
+            },
+            {
+              "type": "uint256",
+              "name": "value",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "SafeCastOverflowedUintDowncast"
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "delegationAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "DelegationAddressProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "delegationAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "DelegationAddressRegistrationConfirmed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "maxNodeIdsPerEntity",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MaxNodeIdsPerEntitySet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "bytes20",
+              "name": "nodeId",
+              "internalType": "bytes20",
+              "indexed": true
+            }
+          ],
+          "name": "NodeIdRegistered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "bytes20",
+              "name": "nodeId",
+              "internalType": "bytes20",
+              "indexed": true
+            }
+          ],
+          "name": "NodeIdUnregistered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "bytes32",
+              "name": "part1",
+              "internalType": "bytes32",
+              "indexed": true
+            },
+            {
+              "type": "bytes32",
+              "name": "part2",
+              "internalType": "bytes32",
+              "indexed": true
+            }
+          ],
+          "name": "PublicKeyRegistered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "bytes32",
+              "name": "part1",
+              "internalType": "bytes32",
+              "indexed": true
+            },
+            {
+              "type": "bytes32",
+              "name": "part2",
+              "internalType": "bytes32",
+              "indexed": true
+            }
+          ],
+          "name": "PublicKeyUnregistered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "signingPolicyAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "SigningPolicyAddressProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "signingPolicyAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "SigningPolicyAddressRegistrationConfirmed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "submitAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "SubmitAddressProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "submitAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "SubmitAddressRegistrationConfirmed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "submitSignaturesAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "SubmitSignaturesAddressProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "submitSignaturesAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "SubmitSignaturesAddressRegistrationConfirmed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "confirmDelegationAddressRegistration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "confirmSigningPolicyAddressRegistration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "confirmSubmitAddressRegistration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "confirmSubmitSignaturesAddressRegistration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "getDelegationAddressOf"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getDelegationAddressOfAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_voters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getDelegationAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_voters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getNodeIds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "getNodeIdsOf"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getNodeIdsOfAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "getPublicKeyOf"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getPublicKeyOfAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_voters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getPublicKeys"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_voters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getSigningPolicyAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_voters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getSubmitAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_voters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getSubmitSignaturesAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "getVoterAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterAddressesAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_delegationAddress",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterForDelegationAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes20",
+              "name": "_nodeId",
+              "internalType": "bytes20"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterForNodeId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "_part1",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "_part2",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterForPublicKey"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_signingPolicyAddress",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterForSigningPolicyAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_submitAddress",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterForSubmitAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_submitSignaturesAddress",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterForSubmitSignaturesAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "maxNodeIdsPerEntity"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "nodePossessionVerifier"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_delegationAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeDelegationAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_signingPolicyAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeSigningPolicyAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_submitAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeSubmitAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_submitSignaturesAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeSubmitSignaturesAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "publicKeyVerifier"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes20",
+              "name": "_nodeId",
+              "internalType": "bytes20"
+            },
+            {
+              "type": "bytes",
+              "name": "_certificateRaw",
+              "internalType": "bytes"
+            },
+            {
+              "type": "bytes",
+              "name": "_signature",
+              "internalType": "bytes"
+            }
+          ],
+          "name": "registerNodeId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "_part1",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "_part2",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes",
+              "name": "_verificationData",
+              "internalType": "bytes"
+            }
+          ],
+          "name": "registerPublicKey"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple[]",
+              "name": "_data",
+              "internalType": "struct EntityManager.InitialVoterData[]"
+            }
+          ],
+          "name": "setInitialVoterData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "_newMaxNodeIdsPerEntity",
+              "internalType": "uint32"
+            }
+          ],
+          "name": "setMaxNodeIdsPerEntity"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_nodePossessionVerifier",
+              "internalType": "contract IINodePossessionVerifier"
+            }
+          ],
+          "name": "setNodePossessionVerifier"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_publicKeyVerifier",
+              "internalType": "contract IIPublicKeyVerifier"
+            }
+          ],
+          "name": "setPublicKeyVerifier"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes20",
+              "name": "_nodeId",
+              "internalType": "bytes20"
+            }
+          ],
+          "name": "unregisterNodeId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "unregisterPublicKey"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

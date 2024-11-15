@@ -1,0 +1,914 @@
+{
+  "name": "ClaimSetupManager",
+  "chainId": 19,
+  "address": "0xDD138B38d87b0F95F6c3e13e78FFDF2588F1732d",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_feeValueUpdateOffset",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_minFeeValueWei",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_maxFeeValueWei",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_registerExecutorFeeValueWei",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "recipients",
+              "internalType": "address[]",
+              "indexed": false
+            }
+          ],
+          "name": "AllowedClaimRecipientsChanged",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "executor",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "validFromRewardEpoch",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "feeValueWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ClaimExecutorFeeValueChanged",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "executors",
+              "internalType": "address[]",
+              "indexed": false
+            }
+          ],
+          "name": "ClaimExecutorsChanged",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "delegationAccount",
+              "internalType": "contract IDelegationAccount",
+              "indexed": false
+            }
+          ],
+          "name": "DelegationAccountCreated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "delegationAccount",
+              "internalType": "contract IDelegationAccount",
+              "indexed": false
+            },
+            {
+              "type": "bool",
+              "name": "enabled",
+              "internalType": "bool",
+              "indexed": false
+            }
+          ],
+          "name": "DelegationAccountUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "executor",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "ExecutorRegistered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "executor",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "validFromRewardEpoch",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ExecutorUnregistered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "maxFeeValueWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MaxFeeSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "minFeeValueWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MinFeeSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "registerExecutorFeeValueWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "RegisterExecutorFeeSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "excessAmount",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "SetExecutorsExcessAmountRefunded",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "libraryAddress",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "SetLibraryAddress",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            }
+          ],
+          "name": "accountToDelegationAccount"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            }
+          ],
+          "name": "allowedClaimRecipients"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_delegatees",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_bips",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "batchDelegate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_claimFor",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_recipient",
+              "internalType": "address"
+            }
+          ],
+          "name": "checkExecutorAndAllowedRecipient"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            }
+          ],
+          "name": "claimExecutors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_to",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_bips",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "delegate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_to",
+              "internalType": "address"
+            }
+          ],
+          "name": "delegateGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "disableDelegationAccount"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "enableDelegationAccount"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "feeValueUpdateOffset"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            },
+            {
+              "type": "address[]",
+              "name": "_owners",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "getAutoClaimAddressesAndExecutorFee"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            }
+          ],
+          "name": "getDelegationAccountData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            }
+          ],
+          "name": "getExecutorCurrentFeeValue"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardEpoch",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getExecutorFeeValue"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            }
+          ],
+          "name": "getExecutorInfo"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            }
+          ],
+          "name": "getExecutorScheduledFeeValueChanges"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_start",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_end",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getRegisteredExecutors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceVP"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            }
+          ],
+          "name": "isClaimExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "libraryAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "maxFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "minFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_feeValue",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "registerExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "registerExecutorFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_who",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "revokeDelegationAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_recipients",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setAllowedClaimRecipients"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_executors",
+              "internalType": "address[]"
+            },
+            {
+              "type": "bool",
+              "name": "_enableDelegationAccount",
+              "internalType": "bool"
+            }
+          ],
+          "name": "setAutoClaiming"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_executors",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setClaimExecutors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_libraryAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "setLibraryAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_maxFeeValueWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setMaxFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_minFeeValueWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setMinFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_registerExecutorFeeValueWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setRegisterExecutorFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_token",
+              "internalType": "contract IERC20"
+            },
+            {
+              "type": "uint256",
+              "name": "_amount",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "transferExternalToken"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "undelegateAll"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "undelegateGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "unregisterExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_feeValue",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "updateExecutorFeeValue"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "wNat"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_amount",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "withdraw"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

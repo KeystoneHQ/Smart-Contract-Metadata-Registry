@@ -1,0 +1,280 @@
+{
+  "name": "FtsoInflationConfigurations",
+  "chainId": 19,
+  "address": "0xedCC74C6Dac98abB2F658D8cF6112D6B53B0E78D",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple",
+              "name": "_config",
+              "internalType": "struct IFtsoInflationConfigurations.FtsoConfiguration"
+            }
+          ],
+          "name": "addFtsoConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_index",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getFtsoConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getFtsoConfigurations"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_index",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "removeFtsoConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_index",
+              "internalType": "uint256"
+            },
+            {
+              "type": "tuple",
+              "name": "_config",
+              "internalType": "struct IFtsoInflationConfigurations.FtsoConfiguration"
+            }
+          ],
+          "name": "replaceFtsoConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

@@ -1,0 +1,1148 @@
+{
+  "name": "FtsoManager",
+  "chainId": 19,
+  "address": "0x7A6B15E17b7691ba687ad182bD12cb4a91D533ae",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_flareDaemon",
+              "internalType": "contract FlareDaemon"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_oldFtsoManager",
+              "internalType": "contract IIFtsoManagerV1"
+            },
+            {
+              "type": "uint256",
+              "name": "_firstPriceEpochStartTs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_priceEpochDurationSeconds",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_revealEpochDurationSeconds",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_firstRewardEpochStartTs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardEpochDurationSeconds",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_votePowerIntervalFraction",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "epochId",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "AccruingUnearnedRewardsFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [],
+          "name": "ChillingNonrevealingDataProvidersFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "blockNumber",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "CleanupBlockNumberManagerFailedForBlock",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpoch",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ClosingExpiredRewardEpochFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "theContract",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "atBlock",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "theMessage",
+              "internalType": "string",
+              "indexed": false
+            }
+          ],
+          "name": "ContractRevertError",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "ftso",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "epochId",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "DistributingRewardsFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bool",
+              "name": "fallbackMode",
+              "internalType": "bool",
+              "indexed": false
+            }
+          ],
+          "name": "FallbackMode",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "ftso",
+              "internalType": "contract IIFtso",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "epochId",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint8",
+              "name": "failingType",
+              "internalType": "enum IFtso.PriceFinalizationType",
+              "indexed": false
+            }
+          ],
+          "name": "FinalizingPriceEpochFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "ftso",
+              "internalType": "contract IIFtso",
+              "indexed": false
+            },
+            {
+              "type": "bool",
+              "name": "add",
+              "internalType": "bool",
+              "indexed": false
+            }
+          ],
+          "name": "FtsoAdded",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "ftso",
+              "internalType": "contract IIFtso",
+              "indexed": false
+            }
+          ],
+          "name": "FtsoDeactivationFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "ftso",
+              "internalType": "contract IIFtso",
+              "indexed": false
+            },
+            {
+              "type": "bool",
+              "name": "fallbackMode",
+              "internalType": "bool",
+              "indexed": false
+            }
+          ],
+          "name": "FtsoFallbackMode",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "ftso",
+              "internalType": "contract IIFtso",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "epochId",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "InitializingCurrentEpochStateForRevealFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "chosenFtso",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "rewardEpochId",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "PriceEpochFinalized",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "votepowerBlock",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "startBlock",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "RewardEpochFinalized",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpoch",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "UpdatingActiveValidatorsTriggerFailed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bool",
+              "name": "useGoodRandom",
+              "internalType": "bool",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "maxWaitForGoodRandomSeconds",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "UseGoodRandomSet",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "MAX_TRUSTED_ADDRESSES_LENGTH"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "activate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "active"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            }
+          ],
+          "name": "addFtso"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_ftsos",
+              "internalType": "contract IIFtso[]"
+            }
+          ],
+          "name": "addFtsosBulk"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "cleanupBlockNumberManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "currentRewardEpochEnds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "daemonize"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_ftsos",
+              "internalType": "contract IIFtso[]"
+            }
+          ],
+          "name": "deactivateFtsos"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "errorData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareDaemon"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoRegistry"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [],
+          "name": "getContractName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getCurrentPriceEpochData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getCurrentPriceEpochId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getCurrentRewardEpoch"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            }
+          ],
+          "name": "getElasticBandWidthPPMFtso"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getFallbackMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getFtsos"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getGovernanceParameters"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getLastUnprocessedPriceEpochData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getPriceEpochConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getPriceSubmitter"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardEpochConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getRewardEpochData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardEpochToExpireNext"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_rewardEpoch",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getRewardEpochVotePowerBlock"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardExpiryOffsetSeconds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getUpdateGovernanceParametersTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getVotePowerIntervalFraction"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastRewardedFtsoAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "maxWaitForGoodRandomSeconds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            }
+          ],
+          "name": "notInitializedFtsos"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "oldFtsoManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "priceSubmitter"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            }
+          ],
+          "name": "removeFtso"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftsoToAdd",
+              "internalType": "contract IIFtso"
+            },
+            {
+              "type": "bool",
+              "name": "_copyCurrentPrice",
+              "internalType": "bool"
+            },
+            {
+              "type": "bool",
+              "name": "_copyAssetOrAssetFtsos",
+              "internalType": "bool"
+            }
+          ],
+          "name": "replaceFtso"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_ftsosToAdd",
+              "internalType": "contract IIFtso[]"
+            },
+            {
+              "type": "bool",
+              "name": "_copyCurrentPrice",
+              "internalType": "bool"
+            },
+            {
+              "type": "bool",
+              "name": "_copyAssetOrAssetFtsos",
+              "internalType": "bool"
+            }
+          ],
+          "name": "replaceFtsosBulk"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardEpochDurationSeconds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "rewardEpochs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardEpochsStartTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_updateTs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address[]",
+              "name": "_ftsos",
+              "internalType": "contract IIFtso[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_widths",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "setElasticBandWidthPPMFtsos"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bool",
+              "name": "_fallbackMode",
+              "internalType": "bool"
+            }
+          ],
+          "name": "setFallbackMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            },
+            {
+              "type": "address",
+              "name": "_asset",
+              "internalType": "contract IIVPToken"
+            }
+          ],
+          "name": "setFtsoAsset"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            },
+            {
+              "type": "address[]",
+              "name": "_assetFtsos",
+              "internalType": "contract IIFtso[]"
+            }
+          ],
+          "name": "setFtsoAssetFtsos"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftso",
+              "internalType": "contract IIFtso"
+            },
+            {
+              "type": "bool",
+              "name": "_fallbackMode",
+              "internalType": "bool"
+            }
+          ],
+          "name": "setFtsoFallbackMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_updateTs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_maxVotePowerNatThresholdFraction",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_maxVotePowerAssetThresholdFraction",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_lowAssetUSDThreshold",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_highAssetUSDThreshold",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_highAssetTurnoutThresholdBIPS",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_lowNatTurnoutThresholdBIPS",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_elasticBandRewardBIPS",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardExpiryOffsetSeconds",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address[]",
+              "name": "_trustedAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setGovernanceParameters"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_nextRewardEpochToExpire",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardEpochsLength",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_currentRewardEpochEnds",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setInitialRewardData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_rewardEpochDurationSeconds",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setRewardEpochDurationSeconds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_updateValidators",
+              "internalType": "contract IUpdateValidators"
+            }
+          ],
+          "name": "setUpdateOnRewardEpochSwitchover"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bool",
+              "name": "_useGoodRandom",
+              "internalType": "bool"
+            },
+            {
+              "type": "uint256",
+              "name": "_maxWaitForGoodRandomSeconds",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setUseGoodRandom"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_votePowerIntervalFraction",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setVotePowerIntervalFraction"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "showLastRevertedError"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "startIndex",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "numErrorTypesToShow",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "showRevertedErrors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "supply"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToFallbackMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "updateOnRewardEpochSwitchover"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "useGoodRandom"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "voterWhitelister"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "waitingForGoodRandomSinceTs"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}
