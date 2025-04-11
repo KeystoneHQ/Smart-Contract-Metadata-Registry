@@ -1,0 +1,1 @@
+{"name": "GeniusMulticall", "chainId": 56, "address": "0x07163134f1d32358169F46ae98C7d5bA6242fBAE", "metadata": {"output": {"abi": [{"inputs": [{"internalType": "bytes", "name": "transactions", "type": "bytes"}], "name": "multiSend", "outputs": [], "stateMutability": "payable", "type": "function"}]}}, "version": 1, "checkPoints": [], "isProxy": false, "principalAddress": null}
