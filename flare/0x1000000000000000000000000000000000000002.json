@@ -1,0 +1,482 @@
+{
+  "name": "FlareDaemon",
+  "chainId": 19,
+  "address": "0x1000000000000000000000000000000000000002",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "theContract",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "atBlock",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "theMessage",
+              "internalType": "string",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "gasConsumed",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ContractDaemonizeErrored",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "theContract",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "gasConsumed",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ContractDaemonized",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "theContract",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "blockHoldoffsRemaining",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ContractHeldOff",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "numberOfSkippedConstracts",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ContractsSkippedOutOfGas",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "proposedGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "oldGovernance",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "newGoveranance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "theNewContract",
+              "internalType": "contract IInflationGenesis",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "theOldContract",
+              "internalType": "contract IInflationGenesis",
+              "indexed": false
+            }
+          ],
+          "name": "InflationSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MintingReceived",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MintingRequestReceived",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MintingRequestTriggered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "MintingWithdrawn",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "theContract",
+              "internalType": "contract IFlareDaemonize",
+              "indexed": false
+            },
+            {
+              "type": "bool",
+              "name": "add",
+              "internalType": "bool",
+              "indexed": false
+            }
+          ],
+          "name": "RegistrationUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "SelfDestructReceived",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "blockHoldoff"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "claimGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "errorData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getDaemonizedContractsData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getNextMintRequestAllowedTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "inflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "initialiseFixedAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastMintRequestTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastUpdateMaxMintRequestTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "maxMintingRequestWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "proposedGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple[]",
+              "name": "_registrations",
+              "internalType": "struct FlareDaemon.Registration[]"
+            }
+          ],
+          "name": "registerToDaemonize"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_amountWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "requestMinting"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_blockHoldoff",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setBlockHoldoff"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_inflation",
+              "internalType": "contract IInflationGenesis"
+            }
+          ],
+          "name": "setInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_maxMintingRequestWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setMaxMintingRequest"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "startIndex",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "numErrorTypesToShow",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "showDaemonizedErrors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "showLastDaemonizedError"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "systemLastTriggeredAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalMintingReceivedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalMintingRequestedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalMintingWithdrawnWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalSelfDestructReceivedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "transferGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "trigger"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "unregisterAll"
+        }
+      ],
+      "settings": {
+        "evmVersion": "default",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

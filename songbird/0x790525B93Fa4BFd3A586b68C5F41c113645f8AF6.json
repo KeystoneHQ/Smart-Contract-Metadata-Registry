@@ -1,0 +1,893 @@
+{
+  "name": "PollingFtso",
+  "chainId": 19,
+  "address": "0x790525B93Fa4BFd3A586b68C5F41c113645f8AF6",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "proposer",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "description",
+              "internalType": "string",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "voteStartTime",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "voteEndTime",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "thresholdConditionBIPS",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "majorityConditionBIPS",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "eligibleMembers",
+              "internalType": "address[]",
+              "indexed": false
+            }
+          ],
+          "name": "FtsoProposalCreated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "newMaintainer",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "MaintainerSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "addedMember",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "ManagementGroupMemberAdded",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "removedMember",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "ManagementGroupMemberRemoved",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "votingDelaySeconds",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "votingPeriodSeconds",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "thresholdConditionBIPS",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "majorityConditionBIPS",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "proposalFeeValueWei",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "addAfterRewardedEpochs",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "addAfterNotChilledEpochs",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "removeAfterNotRewardedEpochs",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "removeAfterEligibleProposals",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "removeAfterNonParticipatingProposals",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "removeForDays",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ParametersSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "ProposalCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "account",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "proxyVoter",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "ProxyVoterSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "uint8",
+              "name": "support",
+              "internalType": "uint8",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "forVotePower",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "againstVotePower",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "VoteCast",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "addAfterNotChilledEpochs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "addAfterRewardedEpochs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "addMember"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_account",
+              "internalType": "address"
+            }
+          ],
+          "name": "canPropose"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_account",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "canVote"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "cancel"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint8",
+              "name": "_support",
+              "internalType": "uint8"
+            }
+          ],
+          "name": "castVote"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_providersToAdd",
+              "internalType": "address[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_providersToRemove",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "changeManagementGroupMembers"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoRewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getLastProposal"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getManagementGroupMembers"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getProposalDescription"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getProposalInfo"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getProposalVotes"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "hasVoted"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "idCounter"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_account",
+              "internalType": "address"
+            }
+          ],
+          "name": "isMember"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "maintainer"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "majorityConditionBIPS"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "memberAddedAtProposal"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "memberAddedAtRewardEpoch"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "memberRemovedAtTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "proposalFeeValueWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "string",
+              "name": "_description",
+              "internalType": "string"
+            }
+          ],
+          "name": "propose"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "providerToProxy"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "proxyToProvider"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "removeAfterEligibleProposals"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "removeAfterNonParticipatingProposals"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "removeAfterNotRewardedEpochs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "removeForDays"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_account",
+              "internalType": "address"
+            }
+          ],
+          "name": "removeMember"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_newMaintainer",
+              "internalType": "address"
+            }
+          ],
+          "name": "setMaintainer"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_votingDelaySeconds",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_votingPeriodSeconds",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_thresholdConditionBIPS",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_majorityConditionBIPS",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_proposalFeeValueWei",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_addAfterRewardedEpochs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_addAfterNotChilledEpochs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_removeAfterNotRewardedEpochs",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_removeAfterEligibleProposals",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_removeAfterNonParticipatingProposals",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_removeForDays",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setParameters"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_proxyVoter",
+              "internalType": "address"
+            }
+          ],
+          "name": "setProxyVoter"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "state"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "thresholdConditionBIPS"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "voterWhitelister"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "votingDelaySeconds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "votingPeriodSeconds"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

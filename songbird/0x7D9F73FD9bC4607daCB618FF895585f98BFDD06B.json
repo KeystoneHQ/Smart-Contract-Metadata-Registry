@@ -1,0 +1,669 @@
+{
+  "name": "FastUpdater",
+  "chainId": 19,
+  "address": "0x7D9F73FD9bC4607daCB618FF895585f98BFDD06B",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_flareDaemon",
+              "internalType": "address"
+            },
+            {
+              "type": "uint32",
+              "name": "_firstVotingRoundStartTs",
+              "internalType": "uint32"
+            },
+            {
+              "type": "uint8",
+              "name": "_votingEpochDurationSeconds",
+              "internalType": "uint8"
+            },
+            {
+              "type": "uint8",
+              "name": "_submissionWindow",
+              "internalType": "uint8"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "inputs": [],
+          "name": "ECDSAInvalidSignature"
+        },
+        {
+          "type": "error",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "length",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "ECDSAInvalidSignatureLength"
+        },
+        {
+          "type": "error",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "s",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "ECDSAInvalidSignatureS"
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "index",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "FastUpdateFeedRemoved",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "votingRoundId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "index",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "bytes21",
+              "name": "id",
+              "internalType": "bytes21",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "value",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "int8",
+              "name": "decimals",
+              "internalType": "int8",
+              "indexed": false
+            }
+          ],
+          "name": "FastUpdateFeedReset",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "votingEpochId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "uint256[]",
+              "name": "feeds",
+              "internalType": "uint256[]",
+              "indexed": false
+            },
+            {
+              "type": "int8[]",
+              "name": "decimals",
+              "internalType": "int8[]",
+              "indexed": false
+            }
+          ],
+          "name": "FastUpdateFeeds",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "votingRoundId",
+              "internalType": "uint32",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "signingPolicyAddress",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "FastUpdateFeedsSubmitted",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "MAX_BLOCKS_HISTORY"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "MAX_FEED_AGE_IN_VOTING_EPOCHS"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_blockNum",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "blockScoreCutoff"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "currentRewardEpochId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "currentScoreCutoff"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_signingPolicyAddress",
+              "internalType": "address"
+            }
+          ],
+          "name": "currentSortitionWeight"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "daemonize"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "fastUpdateIncentiveManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "fastUpdatesConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "feeCalculator"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "feeDestination"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [],
+          "name": "fetchAllCurrentFeeds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "_indices",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "fetchCurrentFeeds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "firstVotingRoundStartTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareDaemon"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareSystemsManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoFeedPublisher"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [],
+          "name": "getContractName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getFreeFetchAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_historySize",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "numberOfUpdates"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "numberOfUpdatesInBlock"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "_indices",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "removeFeeds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "_indices",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "resetFeeds"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_feeDestination",
+              "internalType": "address"
+            }
+          ],
+          "name": "setFeeDestination"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_freeFetchAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setFreeFetchAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint8",
+              "name": "_submissionWindow",
+              "internalType": "uint8"
+            }
+          ],
+          "name": "setSubmissionWindow"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "submissionWindow"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple",
+              "name": "_updates",
+              "internalType": "struct IFastUpdater.FastUpdates"
+            }
+          ],
+          "name": "submitUpdates"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "switchToFallbackMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "bytes32",
+              "name": "_part1",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "_part2",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes",
+              "name": "_verificationData",
+              "internalType": "bytes"
+            }
+          ],
+          "name": "verifyPublicKey"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "voterRegistry"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "votingEpochDurationSeconds"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

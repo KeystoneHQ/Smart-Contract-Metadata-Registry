@@ -1,0 +1,244 @@
+{
+  "name": "InflationAllocation",
+  "chainId": 19,
+  "address": "0x260371e0CF561887C6Da270CC3Be84C2FaB5444f",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_executor",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "proposedGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "oldGovernance",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "newGoveranance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "account",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "amountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "SuccessfulTransfer",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_addresses",
+              "internalType": "address payable[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_amountsWei",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "batchTransferTo"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_token",
+              "internalType": "contract IERC20"
+            },
+            {
+              "type": "address[]",
+              "name": "_addresses",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_amounts",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "batchTransferTokensTo"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "claimGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "executor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "proposedGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_newExecutor",
+              "internalType": "address"
+            }
+          ],
+          "name": "setExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "transferGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address payable"
+            },
+            {
+              "type": "uint256",
+              "name": "_amountWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "transferTo"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_token",
+              "internalType": "contract IERC20"
+            },
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_amount",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "transferTokensTo"
+        }
+      ],
+      "settings": {
+        "evmVersion": "default",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}
