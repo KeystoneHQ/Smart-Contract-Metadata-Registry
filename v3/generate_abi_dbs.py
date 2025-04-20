@@ -146,7 +146,7 @@ def merge_abis_to_sqlite(chain_name, db_target_path, contracts_path):
     fileslist = os.listdir(contracts_path)
 
     if len(fileslist):
-        sum_of_file = len(fileslist) - 1
+        sum_of_file = len(fileslist)
         location = 0
         for file in fileslist:
             if file.endswith(".json"):
