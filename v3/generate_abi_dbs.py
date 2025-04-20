@@ -11,6 +11,7 @@ CHAIN_ID_MAP = {
     "ethereum": 1,
     "arbitrum": 42161,
     "avalanche": 43114,
+    "base": 8453,
     "bsc": 56,
     "celo": 42220,
     "fantom": 250,
