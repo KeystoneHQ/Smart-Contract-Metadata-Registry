@@ -1,0 +1,167 @@
+{
+  "name": "WNatDelegationFee",
+  "chainId": 19,
+  "address": "0x3499a6D765640F8D35538cF0a292BcA38504353C",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "uint24",
+              "name": "_feePercentageUpdateOffset",
+              "internalType": "uint24"
+            },
+            {
+              "type": "uint16",
+              "name": "_defaultFeePercentageBIPS",
+              "internalType": "uint16"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint16",
+              "name": "value",
+              "internalType": "uint16",
+              "indexed": false
+            },
+            {
+              "type": "uint24",
+              "name": "validFromEpochId",
+              "internalType": "uint24",
+              "indexed": false
+            }
+          ],
+          "name": "FeePercentageChanged",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "defaultFeePercentageBIPS"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "feePercentageUpdateOffset"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareSystemsManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "getVoterCurrentFeePercentage"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVoterFeePercentage"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "getVoterScheduledFeePercentageChanges"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint16",
+              "name": "_feePercentageBIPS",
+              "internalType": "uint16"
+            }
+          ],
+          "name": "setVoterFeePercentage"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}
