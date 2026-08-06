@@ -1,0 +1,115 @@
+{
+  "name": "FlareContractRegistry",
+  "chainId": 19,
+  "address": "0xaD67FE66660Fb8dFE9d6b1b4240d8650e30F6019",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAllContracts"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "_nameHash",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "getContractAddressByHash"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "string",
+              "name": "_name",
+              "internalType": "string"
+            }
+          ],
+          "name": "getContractAddressByName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_nameHashes",
+              "internalType": "bytes32[]"
+            }
+          ],
+          "name": "getContractAddressesByHash"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "string[]",
+              "name": "_names",
+              "internalType": "string[]"
+            }
+          ],
+          "name": "getContractAddressesByName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

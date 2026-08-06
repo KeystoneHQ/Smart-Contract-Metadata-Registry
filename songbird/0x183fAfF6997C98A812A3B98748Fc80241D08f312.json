@@ -1,0 +1,201 @@
+{
+  "name": "GovernanceSettings",
+  "chainId": 19,
+  "address": "0x183fAfF6997C98A812A3B98748Fc80241D08f312",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "oldGovernanceAddress",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "newGovernanceAddress",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceAddressUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "oldExecutors",
+              "internalType": "address[]",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "newExecutors",
+              "internalType": "address[]",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceExecutorsUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "oldTimelock",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "newTimelock",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceTimelockUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "SIGNAL_COINBASE"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getExecutors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getGovernanceAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getTimelock"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceAddress",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_timelock",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address[]",
+              "name": "_executors",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_newExecutors",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setExecutors"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_newGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "setGovernanceAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_newTimelock",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setTimelock"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

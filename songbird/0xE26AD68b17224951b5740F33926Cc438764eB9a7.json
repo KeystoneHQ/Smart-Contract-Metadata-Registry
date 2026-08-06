@@ -1,0 +1,766 @@
+{
+  "name": "RewardsV2",
+  "chainId": 19,
+  "address": "0xE26AD68b17224951b5740F33926Cc438764eB9a7",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_oldRewardManager",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_rewardManagerId",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "inputs": [],
+          "name": "ReentrancyGuardReentrantCall"
+        },
+        {
+          "type": "error",
+          "inputs": [
+            {
+              "type": "uint8",
+              "name": "bits",
+              "internalType": "uint8"
+            },
+            {
+              "type": "uint256",
+              "name": "value",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "SafeCastOverflowedUintDowncast"
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "beneficiary",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "rewardOwner",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "recipient",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint24",
+              "name": "rewardEpochId",
+              "internalType": "uint24",
+              "indexed": false
+            },
+            {
+              "type": "uint8",
+              "name": "claimType",
+              "internalType": "enum RewardsV2Interface.ClaimType",
+              "indexed": false
+            },
+            {
+              "type": "uint120",
+              "name": "amount",
+              "internalType": "uint120",
+              "indexed": false
+            }
+          ],
+          "name": "RewardClaimed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpochId",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "RewardClaimsEnabled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpochId",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "RewardClaimsExpired",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "activate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "active"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_rewardOwners",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "tuple[]",
+              "name": "_proofs",
+              "internalType": "struct RewardsV2Interface.RewardClaimWithProof[]"
+            }
+          ],
+          "name": "autoClaim"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "cChainStake"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "cChainStakeEnabled"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_rewardOwner",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_recipient",
+              "internalType": "address payable"
+            },
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "bool",
+              "name": "_wrap",
+              "internalType": "bool"
+            },
+            {
+              "type": "tuple[]",
+              "name": "_proofs",
+              "internalType": "struct RewardsV2Interface.RewardClaimWithProof[]"
+            }
+          ],
+          "name": "claim"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_msgSender",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_rewardOwner",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_recipient",
+              "internalType": "address payable"
+            },
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "bool",
+              "name": "_wrap",
+              "internalType": "bool"
+            },
+            {
+              "type": "tuple[]",
+              "name": "_proofs",
+              "internalType": "struct RewardsV2Interface.RewardClaimWithProof[]"
+            }
+          ],
+          "name": "claimProxy"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "claimSetupManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "cleanupBlockNumber"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "closeExpiredRewardEpoch"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "deactivate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "enableCChainStake"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "enableClaims"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "enablePChainStakeMirror"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "firstClaimableRewardEpochId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareSystemsCalculator"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareSystemsManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoRewardManagerProxy"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getCurrentRewardEpochId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getExpectedBalance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getInitialRewardEpochId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_rewardOwner",
+              "internalType": "address"
+            }
+          ],
+          "name": "getNextClaimableRewardEpochId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardEpochIdToExpireNext"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardEpochIdsWithClaimableRewards"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            }
+          ],
+          "name": "getRewardEpochTotals"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardOffersManagerList"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_rewardOwner",
+              "internalType": "address"
+            }
+          ],
+          "name": "getStateOfRewards"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_rewardOwner",
+              "internalType": "address"
+            },
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            }
+          ],
+          "name": "getStateOfRewardsAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getTokenPoolSupplyData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getTotals"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_beneficiary",
+              "internalType": "address"
+            },
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "uint8",
+              "name": "_claimType",
+              "internalType": "enum RewardsV2Interface.ClaimType"
+            }
+          ],
+          "name": "getUnclaimedRewardState"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "tuple[]",
+              "name": "_proofs",
+              "internalType": "struct RewardsV2Interface.RewardClaimWithProof[]"
+            }
+          ],
+          "name": "initialiseWeightBasedClaims"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "newRewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardEpochId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "noOfInitialisedWeightBasedClaims"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "oldRewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "pChainStakeMirror"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "pChainStakeMirrorEnabled"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "_rewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "bool",
+              "name": "_inflation",
+              "internalType": "bool"
+            }
+          ],
+          "name": "receiveRewards"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardManagerId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "setInitialRewardData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_newRewardManager",
+              "internalType": "address"
+            }
+          ],
+          "name": "setNewRewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_rewardOffersManagerList",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setRewardOffersManagerList"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "wNat"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

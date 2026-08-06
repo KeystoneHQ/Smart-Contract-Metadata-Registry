@@ -1,0 +1,756 @@
+{
+  "name": "PollingFoundation",
+  "chainId": 19,
+  "address": "0x725cd5E69388515029BCBF9F8aE2cc47f397CD64",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "address[]",
+              "name": "_proposers",
+              "internalType": "address[]"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "ProposalCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "proposer",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "targets",
+              "internalType": "address[]",
+              "indexed": false
+            },
+            {
+              "type": "uint256[]",
+              "name": "values",
+              "internalType": "uint256[]",
+              "indexed": false
+            },
+            {
+              "type": "bytes[]",
+              "name": "calldatas",
+              "internalType": "bytes[]",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "description",
+              "internalType": "string",
+              "indexed": false
+            },
+            {
+              "type": "bool",
+              "name": "accept",
+              "internalType": "bool",
+              "indexed": false
+            },
+            {
+              "type": "uint256[2]",
+              "name": "voteTimes",
+              "internalType": "uint256[2]",
+              "indexed": false
+            },
+            {
+              "type": "uint256[2]",
+              "name": "executionTimes",
+              "internalType": "uint256[2]",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "votePowerBlock",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "thresholdConditionBIPS",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "majorityConditionBIPS",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "circulatingSupply",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "ProposalCreated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            }
+          ],
+          "name": "ProposalExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "addedProposers",
+              "internalType": "address[]",
+              "indexed": false
+            },
+            {
+              "type": "address[]",
+              "name": "removedProposers",
+              "internalType": "address[]",
+              "indexed": false
+            }
+          ],
+          "name": "ProposersChanged",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "proposalId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "uint8",
+              "name": "support",
+              "internalType": "uint8",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "votePower",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "reason",
+              "internalType": "string",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "forVotePower",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "againstVotePower",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "VoteCast",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "BALLOT_TYPEHASH"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "cancel"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint8",
+              "name": "_support",
+              "internalType": "uint8"
+            }
+          ],
+          "name": "castVote"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint8",
+              "name": "_support",
+              "internalType": "uint8"
+            },
+            {
+              "type": "uint8",
+              "name": "_v",
+              "internalType": "uint8"
+            },
+            {
+              "type": "bytes32",
+              "name": "_r",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "_s",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "castVoteBySig"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint8",
+              "name": "_support",
+              "internalType": "uint8"
+            },
+            {
+              "type": "string",
+              "name": "_reason",
+              "internalType": "string"
+            }
+          ],
+          "name": "castVoteWithReason"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "chainId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_proposersToAdd",
+              "internalType": "address[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_proposersToRemove",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "changeProposers"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "string",
+              "name": "_description",
+              "internalType": "string"
+            }
+          ],
+          "name": "execute"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_targets",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_values",
+              "internalType": "uint256[]"
+            },
+            {
+              "type": "bytes[]",
+              "name": "_calldatas",
+              "internalType": "bytes[]"
+            },
+            {
+              "type": "string",
+              "name": "_description",
+              "internalType": "string"
+            }
+          ],
+          "name": "execute"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ftsoRegistry"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_targets",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_values",
+              "internalType": "uint256[]"
+            },
+            {
+              "type": "bytes[]",
+              "name": "_calldatas",
+              "internalType": "bytes[]"
+            },
+            {
+              "type": "string",
+              "name": "_description",
+              "internalType": "string"
+            }
+          ],
+          "name": "getProposalId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getProposalInfo"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getProposalVotes"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getVotes"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "hasVoted"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_account",
+              "internalType": "address"
+            }
+          ],
+          "name": "isProposer"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [],
+          "name": "name"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_targets",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_values",
+              "internalType": "uint256[]"
+            },
+            {
+              "type": "bytes[]",
+              "name": "_calldatas",
+              "internalType": "bytes[]"
+            },
+            {
+              "type": "string",
+              "name": "_description",
+              "internalType": "string"
+            },
+            {
+              "type": "tuple",
+              "name": "_settings",
+              "internalType": "struct IGovernor.GovernorSettings"
+            }
+          ],
+          "name": "propose"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "string",
+              "name": "_description",
+              "internalType": "string"
+            },
+            {
+              "type": "tuple",
+              "name": "_settings",
+              "internalType": "struct IIPollingFoundation.GovernorSettingsWithoutExecParams"
+            }
+          ],
+          "name": "propose"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_proposalId",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "state"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "supply"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [],
+          "name": "version"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "votePower"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

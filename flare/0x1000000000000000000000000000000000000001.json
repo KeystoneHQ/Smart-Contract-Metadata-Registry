@@ -1,0 +1,484 @@
+{
+  "name": "StateConnector",
+  "chainId": 19,
+  "address": "0x1000000000000000000000000000000000000001",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32",
+              "indexed": false
+            },
+            {
+              "type": "uint64",
+              "name": "ledger",
+              "internalType": "uint64",
+              "indexed": false
+            },
+            {
+              "type": "uint8",
+              "name": "finType",
+              "internalType": "enum StateConnector.DataAvailabilityPeriodFinalityType",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "sender",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "DataAvailabilityPeriodFinalityProved",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32",
+              "indexed": false
+            },
+            {
+              "type": "uint64",
+              "name": "ledger",
+              "internalType": "uint64",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "txId",
+              "internalType": "string",
+              "indexed": false
+            },
+            {
+              "type": "bytes32",
+              "name": "paymentHash",
+              "internalType": "bytes32",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "sender",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "PaymentFinalityDisproved",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32",
+              "indexed": false
+            },
+            {
+              "type": "uint64",
+              "name": "ledger",
+              "internalType": "uint64",
+              "indexed": false
+            },
+            {
+              "type": "string",
+              "name": "txId",
+              "internalType": "string",
+              "indexed": false
+            },
+            {
+              "type": "bytes32",
+              "name": "paymentHash",
+              "internalType": "bytes32",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "sender",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "PaymentFinalityProved",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "",
+              "internalType": "uint32"
+            }
+          ],
+          "name": "chains"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "commitRevealLowerBound"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "commitRevealUpperBound"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "dataAvailabilityPeriodsMined"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32"
+            },
+            {
+              "type": "bytes32",
+              "name": "paymentHash",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "uint64",
+              "name": "ledger",
+              "internalType": "uint64"
+            },
+            {
+              "type": "string",
+              "name": "txId",
+              "internalType": "string"
+            }
+          ],
+          "name": "disprovePaymentFinality"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "finalisedDataAvailabilityPeriods"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "finalisedPayments"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32"
+            },
+            {
+              "type": "uint64",
+              "name": "dataAvailabilityPeriodIndex",
+              "internalType": "uint64"
+            }
+          ],
+          "name": "getDataAvailabilityPeriodIndexFinality"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "miner",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "rewardSchedule",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getDataAvailabilityPeriodsMined"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32"
+            }
+          ],
+          "name": "getLatestIndex"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32"
+            },
+            {
+              "type": "bytes32",
+              "name": "txId",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "destinationHash",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "uint64",
+              "name": "amount",
+              "internalType": "uint64"
+            },
+            {
+              "type": "bytes32",
+              "name": "currencyHash",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "getPaymentFinality"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRewardPeriod"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "rewardSchedule",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getTotalDataAvailabilityPeriodsMined"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "initialiseChains"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "initialiseTime"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "initialised"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "numChains"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            },
+            {
+              "type": "bytes32",
+              "name": "",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "proposedDataAvailabilityProofs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "uint64",
+              "name": "",
+              "internalType": "uint64"
+            }
+          ],
+          "name": "proposedNonPaymentProofs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "uint64",
+              "name": "",
+              "internalType": "uint64"
+            }
+          ],
+          "name": "proposedPaymentProofs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32"
+            },
+            {
+              "type": "uint64",
+              "name": "ledger",
+              "internalType": "uint64"
+            },
+            {
+              "type": "bytes32",
+              "name": "dataAvailabilityPeriodHash",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "bytes32",
+              "name": "chainTipHash",
+              "internalType": "bytes32"
+            }
+          ],
+          "name": "proveDataAvailabilityPeriodFinality"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint32",
+              "name": "chainId",
+              "internalType": "uint32"
+            },
+            {
+              "type": "bytes32",
+              "name": "paymentHash",
+              "internalType": "bytes32"
+            },
+            {
+              "type": "uint64",
+              "name": "ledger",
+              "internalType": "uint64"
+            },
+            {
+              "type": "string",
+              "name": "txId",
+              "internalType": "string"
+            }
+          ],
+          "name": "provePaymentFinality"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardPeriodTimespan"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "",
+              "internalType": "address"
+            }
+          ],
+          "name": "senderBannedUntil"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "totalDataAvailabilityPeriodsMined"
+        }
+      ],
+      "settings": {
+        "evmVersion": "default",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

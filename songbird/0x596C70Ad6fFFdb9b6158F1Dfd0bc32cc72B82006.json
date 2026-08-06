@@ -1,0 +1,631 @@
+{
+  "name": "FastUpdateIncentiveManager",
+  "chainId": 19,
+  "address": "0x596C70Ad6fFFdb9b6158F1Dfd0bc32cc72B82006",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_ss",
+              "internalType": "SampleSize"
+            },
+            {
+              "type": "uint256",
+              "name": "_r",
+              "internalType": "Range"
+            },
+            {
+              "type": "uint256",
+              "name": "_sil",
+              "internalType": "SampleSize"
+            },
+            {
+              "type": "uint256",
+              "name": "_ril",
+              "internalType": "Range"
+            },
+            {
+              "type": "uint256",
+              "name": "_x",
+              "internalType": "Fee"
+            },
+            {
+              "type": "uint256",
+              "name": "_rip",
+              "internalType": "Fee"
+            },
+            {
+              "type": "uint256",
+              "name": "_dur",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "authorizedAmountWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "DailyAuthorizedInflationSet",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "allowedAfterTimestamp",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "bytes",
+              "name": "encodedCall",
+              "internalType": "bytes",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceCallTimelocked",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "initialGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceInitialised",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "governanceSettings",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernedProductionModeEntered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "rewardEpochId",
+              "internalType": "uint24",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "rangeIncrease",
+              "internalType": "Range",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "sampleSizeIncrease",
+              "internalType": "SampleSize",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "offerAmount",
+              "internalType": "Fee",
+              "indexed": false
+            }
+          ],
+          "name": "IncentiveOffered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amountReceivedWei",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "InflationReceived",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "rewardEpochId",
+              "internalType": "uint24",
+              "indexed": true
+            },
+            {
+              "type": "tuple[]",
+              "name": "feedConfigurations",
+              "internalType": "struct IFastUpdatesConfiguration.FeedConfiguration[]",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "InflationRewardsOffered",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallCanceled",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "TimelockedGovernanceCallExecuted",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "advance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "cancelGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "dailyAuthorizedInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "_selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "executeGovernanceCall"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "fastUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "fastUpdatesConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "flareSystemsManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getBaseScale"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [],
+          "name": "getContractName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getCurrentSampleSizeIncreasePrice"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getExpectedBalance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getExpectedSampleSize"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getIncentiveDuration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getInflationAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getPrecision"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getRange"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getScale"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getTokenPoolSupplyData"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governanceSettings"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governanceSettings",
+              "internalType": "contract IGovernanceSettings"
+            },
+            {
+              "type": "address",
+              "name": "_initialGovernance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_address",
+              "internalType": "address"
+            }
+          ],
+          "name": "isExecutor"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastInflationAuthorizationReceivedTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "lastInflationReceivedTs"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "tuple",
+              "name": "_offer",
+              "internalType": "struct IFastUpdateIncentiveManager.IncentiveOffer"
+            }
+          ],
+          "name": "offerIncentive"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "productionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rangeIncreaseLimit"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rangeIncreasePrice"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [],
+          "name": "receiveInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "rewardManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "sampleIncreaseLimit"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_toAuthorizeWei",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setDailyAuthorizedInflation"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_ss",
+              "internalType": "SampleSize"
+            },
+            {
+              "type": "uint256",
+              "name": "_r",
+              "internalType": "Range"
+            },
+            {
+              "type": "uint256",
+              "name": "_x",
+              "internalType": "Fee"
+            },
+            {
+              "type": "uint256",
+              "name": "_dur",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setIncentiveParameters"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_lim",
+              "internalType": "Range"
+            }
+          ],
+          "name": "setRangeIncreaseLimit"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_price",
+              "internalType": "Fee"
+            }
+          ],
+          "name": "setRangeIncreasePrice"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_lim",
+              "internalType": "SampleSize"
+            }
+          ],
+          "name": "setSampleIncreaseLimit"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "switchToProductionMode"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes4",
+              "name": "selector",
+              "internalType": "bytes4"
+            }
+          ],
+          "name": "timelockedCalls"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalInflationAuthorizedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalInflationReceivedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "totalInflationRewardsOfferedWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint24",
+              "name": "_currentRewardEpochId",
+              "internalType": "uint24"
+            },
+            {
+              "type": "uint64",
+              "name": "_currentRewardEpochExpectedEndTs",
+              "internalType": "uint64"
+            },
+            {
+              "type": "uint64",
+              "name": "_rewardEpochDurationSeconds",
+              "internalType": "uint64"
+            }
+          ],
+          "name": "triggerRewardEpochSwitchover"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

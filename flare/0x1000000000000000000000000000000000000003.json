@@ -1,0 +1,357 @@
+{
+  "name": "PriceSubmitter",
+  "chainId": 19,
+  "address": "0x1000000000000000000000000000000000000003",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "proposedGovernance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceProposed",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "oldGovernance",
+              "internalType": "address",
+              "indexed": false
+            },
+            {
+              "type": "address",
+              "name": "newGoveranance",
+              "internalType": "address",
+              "indexed": false
+            }
+          ],
+          "name": "GovernanceUpdated",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "submitter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "epochId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "address[]",
+              "name": "ftsos",
+              "internalType": "contract IFtsoGenesis[]",
+              "indexed": false
+            },
+            {
+              "type": "bytes32[]",
+              "name": "hashes",
+              "internalType": "bytes32[]",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "PriceHashesSubmitted",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "voter",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "epochId",
+              "internalType": "uint256",
+              "indexed": true
+            },
+            {
+              "type": "address[]",
+              "name": "ftsos",
+              "internalType": "contract IFtsoGenesis[]",
+              "indexed": false
+            },
+            {
+              "type": "uint256[]",
+              "name": "prices",
+              "internalType": "uint256[]",
+              "indexed": false
+            },
+            {
+              "type": "uint256[]",
+              "name": "randoms",
+              "internalType": "uint256[]",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "PricesRevealed",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "claimGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getFtsoManager"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getFtsoRegistry"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getTrustedAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getVoterWhitelister"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "governance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "initialise"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "initialiseFixedAddress"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "proposeGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "proposedGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_epochId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_ftsoIndices",
+              "internalType": "uint256[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_prices",
+              "internalType": "uint256[]"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_randoms",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "revealPrices"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ftsoRegistry",
+              "internalType": "contract IFtsoRegistryGenesis"
+            },
+            {
+              "type": "address",
+              "name": "_voterWhitelister",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_ftsoManager",
+              "internalType": "address"
+            }
+          ],
+          "name": "setContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_trustedAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "setTrustedAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_epochId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256[]",
+              "name": "_ftsoIndices",
+              "internalType": "uint256[]"
+            },
+            {
+              "type": "bytes32[]",
+              "name": "_hashes",
+              "internalType": "bytes32[]"
+            }
+          ],
+          "name": "submitPriceHashes"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_governance",
+              "internalType": "address"
+            }
+          ],
+          "name": "transferGovernance"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            }
+          ],
+          "name": "voterWhitelistBitmap"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_voter",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_ftsoIndex",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "voterWhitelisted"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address[]",
+              "name": "_removedVoters",
+              "internalType": "address[]"
+            },
+            {
+              "type": "uint256",
+              "name": "_ftsoIndex",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "votersRemovedFromWhitelist"
+        }
+      ],
+      "settings": {
+        "evmVersion": "default",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

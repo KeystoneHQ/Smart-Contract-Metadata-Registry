@@ -1,0 +1,217 @@
+{
+  "name": "FtsoV2",
+  "chainId": 19,
+  "address": "0x988C99423360C93F334f6F331Aa8A55cfFEd34B5",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_addressUpdater",
+              "internalType": "address"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "FTSO_PROTOCOL_ID"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "fastUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "fastUpdatesConfiguration"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getAddressUpdater"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "bytes21",
+              "name": "_feedId",
+              "internalType": "bytes21"
+            }
+          ],
+          "name": "getFeedById"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "bytes21",
+              "name": "_feedId",
+              "internalType": "bytes21"
+            }
+          ],
+          "name": "getFeedByIdInWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_index",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getFeedByIndex"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_index",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getFeedByIndexInWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_index",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getFeedId"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "bytes21",
+              "name": "_feedId",
+              "internalType": "bytes21"
+            }
+          ],
+          "name": "getFeedIndex"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "bytes21[]",
+              "name": "_feedIds",
+              "internalType": "bytes21[]"
+            }
+          ],
+          "name": "getFeedsById"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "bytes21[]",
+              "name": "_feedIds",
+              "internalType": "bytes21[]"
+            }
+          ],
+          "name": "getFeedsByIdInWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "_indices",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "getFeedsByIndex"
+        },
+        {
+          "type": "function",
+          "stateMutability": "payable",
+          "inputs": [
+            {
+              "type": "uint256[]",
+              "name": "_indices",
+              "internalType": "uint256[]"
+            }
+          ],
+          "name": "getFeedsByIndexInWei"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "relay"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "bytes32[]",
+              "name": "_contractNameHashes",
+              "internalType": "bytes32[]"
+            },
+            {
+              "type": "address[]",
+              "name": "_contractAddresses",
+              "internalType": "address[]"
+            }
+          ],
+          "name": "updateContractAddresses"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "tuple",
+              "name": "_feedData",
+              "internalType": "struct FtsoV2Interface.FeedDataWithProof"
+            }
+          ],
+          "name": "verifyFeedData"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

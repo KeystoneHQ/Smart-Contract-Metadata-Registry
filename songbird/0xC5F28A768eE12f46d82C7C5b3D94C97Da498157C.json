@@ -1,0 +1,272 @@
+{
+  "name": "GovernanceVotePower",
+  "chainId": 19,
+  "address": "0xC5F28A768eE12f46d82C7C5b3D94C97Da498157C",
+  "metadata": {
+    "compiler": {
+      "version": "v0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_ownerToken",
+              "internalType": "contract IVPToken"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "delegator",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "fromDelegate",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "toDelegate",
+              "internalType": "address",
+              "indexed": true
+            }
+          ],
+          "name": "DelegateChanged",
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "delegate",
+              "internalType": "address",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "previousBalance",
+              "internalType": "uint256",
+              "indexed": false
+            },
+            {
+              "type": "uint256",
+              "name": "newBalance",
+              "internalType": "uint256",
+              "indexed": false
+            }
+          ],
+          "name": "DelegateVotesChanged",
+          "anonymous": false
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "cleanerContract"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_to",
+              "internalType": "address"
+            }
+          ],
+          "name": "delegate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_count",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "delegatedGovernanceVotePowerHistoryCleanup"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_owner",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_count",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "delegatesHistoryCleanup"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "getCleanupBlockNumber"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_who",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "getDelegateOfAt"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_who",
+              "internalType": "address"
+            }
+          ],
+          "name": "getDelegateOfAtNow"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_who",
+              "internalType": "address"
+            }
+          ],
+          "name": "getVotes"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [],
+          "name": "ownerToken"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_cleanerContract",
+              "internalType": "address"
+            }
+          ],
+          "name": "setCleanerContract"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "setCleanupBlockNumber"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [],
+          "name": "undelegate"
+        },
+        {
+          "type": "function",
+          "stateMutability": "nonpayable",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_from",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "_to",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_amount",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "updateAtTokenTransfer"
+        },
+        {
+          "type": "function",
+          "stateMutability": "view",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_who",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_blockNumber",
+              "internalType": "uint256"
+            }
+          ],
+          "name": "votePowerOfAt"
+        }
+      ],
+      "settings": {
+        "evmVersion": null,
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}

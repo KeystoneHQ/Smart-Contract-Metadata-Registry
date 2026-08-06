@@ -1,0 +1,56 @@
+{
+  "name": "FtsoFeedIdConverter",
+  "chainId": 19,
+  "address": "0x9c20c3F1fC39F14ad0D09DE91B74a16c12a36C61",
+  "metadata": {
+    "compiler": {
+      "version": "v0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [
+            {
+              "type": "bytes21",
+              "name": "_feedId",
+              "internalType": "bytes21"
+            }
+          ],
+          "name": "getFeedCategoryAndName"
+        },
+        {
+          "type": "function",
+          "stateMutability": "pure",
+          "inputs": [
+            {
+              "type": "uint8",
+              "name": "_category",
+              "internalType": "uint8"
+            },
+            {
+              "type": "string",
+              "name": "_name",
+              "internalType": "string"
+            }
+          ],
+          "name": "getFeedId"
+        }
+      ],
+      "settings": {
+        "evmVersion": "london",
+        "optimizer": {
+          "enabled": true,
+          "runs": [
+            200
+          ]
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "checkpoints": []
+  }
+}
